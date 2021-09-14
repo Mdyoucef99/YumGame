@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 
 
-
-
 /*
 
  * Programme principal qui démarre le jeu de YUM pour un seul joueur.
