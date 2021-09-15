@@ -47,22 +47,34 @@ public class YumVsEtud {
 
 	public static void main(String[] args){
 		
-		 int[] anArray = new int[5];
-		 
-		    RandomNumberInArray(anArray,1,6);
-		   ModAffichage.afficherDes(anArray);
-		 
+		
+		   int[] ArrayDice = new int[5]; //creation des 5 des.
+		   
+		   RandomNumberInArray(ArrayDice,Constantes.DES_MIN,Constantes.DES_MAX); //génération des chiffre aléatoirement entre 1 et 6; 
+		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
+		   
+		   System.out.print("Entrer  les des  a changer - " );
+		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
+		   System.out.print(System.lineSeparator());//next line 
+		   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des 
+		  
+		   ModAffichage.afficherDes(ArrayDice);//affichage des nouveaux des
+		   
+		   
 	    /* Traduisez ici l'algorithme du programme principal
 	     * décrit dans l'énoncé et commenter votre code au fur et à mesure.
 	     */
+		   
 	
 	    System.out.print("Merci d'avoir joue au YUM avec nous");
 	}
 	
+	
 	/*
 	 * Écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
-	public static int[] RandomNumberInArray(int[] array, int min, int max) {
+	public static int[] RandomNumberInArray(int[] array, int min, int max) //fonction qui permet de donner 5 des different
+	{
 	    Random random = new Random();
 	    for (int i = 0; i < array.length; i++) 
 	    {
@@ -70,5 +82,28 @@ public class YumVsEtud {
 	    }
 	    return array;
 	}
- 
+				
+	public static void ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
+	{	
+		 Random random = new Random();
+		 System.out.print("Nouvelle main de des" );
+		 System.out.print(System.lineSeparator());
+		 
+		 for(char c : Index.toCharArray()) 
+		 {
+			      int a=Integer.parseInt(String.valueOf(c));
+			      if(a <=0) 
+			      {
+			    	  System.out.println("player decided to not shuffle");
+			      }
+			      
+			      else {
+			    	  arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; 
+			      }
+				
+		 }
+		 
+	   
+	} 
+	
 }
