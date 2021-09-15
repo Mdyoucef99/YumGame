@@ -19,6 +19,8 @@ public class Constantes {
 	public static final int NB_TOURS = 13;
 	public static final int NB_ESSAIS = 3;
 	public static final int DES_MIN = 1;
+	public static final int DES_MAX = 7;
+	
 	public static final int NB_FACES = 6;
 
 	// Les numéros de case du bonus.
