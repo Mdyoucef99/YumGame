@@ -41,7 +41,7 @@ public class YumVsEtud {
 	// Les constantes sont définies dans le module Constantes.java
 	// Si vous en ajoutez, faîtes-le ici.
 	
-	
+	public static int IncrementTour=0;
 	// Permet la saisie de donnée au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
@@ -50,15 +50,15 @@ public class YumVsEtud {
 		
 		   int[] ArrayDice = new int[5]; //creation des 5 des.
 		   
-		   RandomNumberInArray(ArrayDice,Constantes.DES_MIN,Constantes.DES_MAX); //génération des chiffre aléatoirement entre 1 et 6; 
+		   InitialShuflle(ArrayDice); //génération des chiffre aléatoirement entre 1 et 6; 
 		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
+		   ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
 		   
 		   System.out.print("Entrer  les des  a changer - " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   System.out.print(System.lineSeparator());//next line 
 		   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des 
-		  
-		   ModAffichage.afficherDes(ArrayDice);//affichage des nouveaux des
+		   
 		   
 		   
 	    /* Traduisez ici l'algorithme du programme principal
@@ -73,37 +73,38 @@ public class YumVsEtud {
 	/*
 	 * Écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
-	public static int[] RandomNumberInArray(int[] array, int min, int max) //fonction qui permet de donner 5 des different
-	{
+	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
+	{   
 	    Random random = new Random();
 	    for (int i = 0; i < array.length; i++) 
 	    {
-	        array[i] = random.nextInt(max - min) + min;
+	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
 	    }
+	 
 	    return array;
 	}
 				
 	public static void ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
-	{	
+	{	 IncrementTour++;
 		 Random random = new Random();
 		 System.out.print("Nouvelle main de des" );
 		 System.out.print(System.lineSeparator());
 		 
 		 for(char c : Index.toCharArray()) 
 		 {
-			      int a=Integer.parseInt(String.valueOf(c));
+			      int a=Integer.parseInt(String.valueOf(c));//Convert char to int 
 			      if(a <=0) 
 			      {
 			    	  System.out.println("player decided to not shuffle");
 			      }
 			      
 			      else {
-			    	  arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; 
+			    	  arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 
 			      }
-				
+				  
 		 }
+		 ModAffichage.afficherGrillePossibilite(arrayParam);//affichage the possibilité dans la grille
 		 
-	   
 	} 
 	
 }
