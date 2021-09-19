@@ -23,7 +23,7 @@ import java.util.Scanner;
  * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment 
  *          contribué en écriture de code et de commentaires.
  *          
- * Auteur :
+ * Auteur : Youcef mekki daouadji
  * Auteur :
  * Auteur :
  * Auteur :
@@ -55,21 +55,25 @@ public class YumVsEtud {
 		  
 		   System.out.print("Entrer  les des  a changer - " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
+		   int intdice = Integer.parseInt(NumberChangeOfDice);  //Convertion du string en integer
 		   
-	       ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des
-		
+		   if(intdice<=0) //checker si le input est positif
+		   {
+			   System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
+			   ModAffichage.afficherDes(ArrayDice);
+		   }
+		   else if(intdice>0)
+		   {
+			   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des
+			   ModAffichage.afficherDes(ArrayDice);
+		   }
+
 		   
-		
- 
-	     
-			   
-		   
-		 
 	    /* Traduisez ici l'algorithme du programme principal
 	     * décrit dans l'énoncé et commenter votre code au fur et à mesure.
 	     */
 		   
-	    System.out.print("Merci d'avoir joue au YUM avec nous");
+	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
 	}
 	
 	
@@ -88,29 +92,17 @@ public class YumVsEtud {
 	    return array;
 	}
 				
-	public static void ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
+	public static int[] ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
-		
 		 IncrementTour++;
 		 Random random = new Random();
 		 for(char c : Index.toCharArray()) 
 		 {
 			      int a=Integer.parseInt(String.valueOf(c));//Convert char to int 
-			      if(a <=0) 
-			      {
-			    	  System.out.println("player decided to not shuffle");
-			    	  ModAffichage.afficherDes(arrayParam);//affichage des dés 
-			    	  
-			      }
-			      
-			      else {
-			    	  
-			    	  arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 
-			    	  System.out.println("Nouvelle main pour les Dice ");
-			    	  ModAffichage.afficherDes(arrayParam);//affichage des dés 
-			      }		  
+			      arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
 		 }
-		
+		 
+		 return arrayParam;
 	} 
 	
 }
