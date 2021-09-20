@@ -33,7 +33,6 @@ public class ModAffichage {
 	        if (grille[i] != 0){
 
 	            switch (i){
-	            
 	            case 1:
 	            case 2:
 	            case 3:
@@ -57,7 +56,7 @@ public class ModAffichage {
 	            case Constantes.GROSSE_SUITE:
 	                System.out.printf("|Grosse suite |");
 	                break;
-	            case Constantes.SURPLUS:
+	            case Constantes.SURPLUS:	
 	                System.out.printf("|Surplus      |");
 	                break;
 	            case Constantes.YUM:

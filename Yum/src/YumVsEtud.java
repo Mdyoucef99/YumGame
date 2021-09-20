@@ -53,6 +53,7 @@ public class YumVsEtud {
 		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
 		   ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
 		  
+		  
 		   System.out.print("Entrer  les des  a changer - " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   int intdice = Integer.parseInt(NumberChangeOfDice);  //Convertion du string en integer
@@ -65,9 +66,15 @@ public class YumVsEtud {
 		   else if(intdice>0)
 		   {
 			   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des
+			  
 			   ModAffichage.afficherDes(ArrayDice);
+			   CountDuplicates(ArrayDice);
 		   }
-
+		   
+		 
+		   
+		   
+		 
 		   
 	    /* Traduisez ici l'algorithme du programme principal
 	     * décrit dans l'énoncé et commenter votre code au fur et à mesure.
@@ -87,6 +94,8 @@ public class YumVsEtud {
 	    for (int i = 0; i < array.length; i++) 
 	    {
 	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
+	        
+	       
 	    }
 	 
 	    return array;
@@ -104,5 +113,35 @@ public class YumVsEtud {
 		 
 		 return arrayParam;
 	} 
+	
+	public static void CountDuplicates(int[]array) //conter le nombre de fois qu'une valeur se repete dans le tableau
+	{
+		int r=0;
+		
+		for (int i = 0; i < array.length; i++) 
+		{
+		     for (int j = i + 1 ; j < array.length; j++) 
+		          {
+		          if (array[i]==array[j]) 
+		          {
+		            r++;   
+		            
+		            if(r==3) 
+		            {
+		            	System.out.println("Brelan "+ array[i]*3);
+		            }
+		            
+		            else if(r==4) 
+		            {
+		            	System.out.println(" Carre "+array[i]*4);
+		            }
+		            
+		          }
+		          
+		     }
+		    
+		 }
+		
+	}
 	
 }
