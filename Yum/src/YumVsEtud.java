@@ -8,20 +8,20 @@ import java.util.Scanner;
 
 /*
 
- * Programme principal qui démarre le jeu de YUM pour un seul joueur.
+ * Programme principal qui dÃ©marre le jeu de YUM pour un seul joueur.
  * 
- * Une série de 5 dés est généré aléatoirement et le joueur a droit
- * a changer les dés qu'il désire à deux reprises à moins qu'il les
+ * Une sÃ©rie de 5 dÃ©s est gÃ©nÃ©rÃ© alÃ©atoirement et le joueur a droit
+ * a changer les dÃ©s qu'il dÃ©sire Ã  deux reprises Ã  moins qu'il les
  * garde tous.
  * 
- * Par la suite, le programme offre toutes les possibilités de points 
- * pouvant être joués et le joueur décide quel est son choix parmi 
- * ces possibilités.
+ * Par la suite, le programme offre toutes les possibilitÃ©s de points 
+ * pouvant Ãªtre jouÃ©s et le joueur dÃ©cide quel est son choix parmi 
+ * ces possibilitÃ©s.
  * 
- * Dans le cadre du cours inf111 (voir énnoncé fourni).
+ * Dans le cadre du cours inf111 (voir Ã©nnoncÃ© fourni).
  * 
  * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment 
- *          contribué en écriture de code et de commentaires.
+ *          contribuÃ© en Ã©criture de code et de commentaires.
  *          
  * Auteur : Youcef mekki daouadji
  * Auteur :
@@ -30,7 +30,7 @@ import java.util.Scanner;
  * Auteur :
  * 
  * 
- * Auteur : Pierre Bélisle
+ * Auteur : Pierre BÃ©lisle
  *          
  * Version : Copyright A2021
  */
@@ -38,21 +38,22 @@ import java.util.Scanner;
 public class YumVsEtud {
 
 	
-	// Les constantes sont définies dans le module Constantes.java
-	// Si vous en ajoutez, faîtes-le ici.
+	// Les constantes sont dÃ©finies dans le module Constantes.java
+	// Si vous en ajoutez, faÃ®tes-le ici.
 	
 	public static int IncrementTour=0;
-	// Permet la saisie de donnée au clavier en mode console.
+	// Permet la saisie de donnÃ©e au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
 		   int[] ArrayDice = new int[5]; //creation des 5 des.
-		   InitialShuflle(ArrayDice); //génération des chiffre aléatoirement entre 1 et 6; 
+		   int[] ArrayPoint = new int[19];
+		   InitialShuflle(ArrayDice); //gÃ©nÃ©ration des chiffre alÃ©atoirement entre 1 et 6; 
 		   
-		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
+		   ModAffichage.afficherDes(ArrayDice);//affichage des dÃ©s 
 		   ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
-		  
+		  //AjoutPointGrille(ArrayPoint);
 		  
 		   System.out.print("Entrer  les des  a changer - " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
@@ -77,7 +78,7 @@ public class YumVsEtud {
 		 
 		   
 	    /* Traduisez ici l'algorithme du programme principal
-	     * décrit dans l'énoncé et commenter votre code au fur et à mesure.
+	     * dÃ©crit dans l'Ã©noncÃ© et commenter votre code au fur et Ã  mesure.
 	     */
 		   
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
@@ -85,8 +86,63 @@ public class YumVsEtud {
 	
 	
 	/*
-	 * Écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
+	 * Ã‰crivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
+	
+	/*
+	fonction imcomplet pour rajouter les points dans la grille principale
+	*/
+	
+		public static int[] AjoutPointGrille(int[] array) {
+		
+		
+		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum");
+		int choix = clavier.nextInt();
+
+		
+		if (choix == 1) {
+			array[1] = 25;
+		}
+		else if (choix == 2) {
+			array[2] = 12;
+		}
+		else if (choix == 3) {
+			array[3] = 17;
+		}
+		else if (choix == 4) {
+			array[4] = 9;
+		}
+		else if (choix == 5) {
+			array[5] = 22;
+		}
+		else if (choix == 6) {
+			array[6] = 19;
+		}
+		else if (choix == 10) {
+			array[Constantes.BRELAN] = 25;
+		}
+		else if (choix == 11) {
+			array[Constantes.CARRE] = 44;
+		}
+		else if (choix == 12) {
+			array[Constantes.MAIN_PLEINE] = 24;
+		}
+		else if (choix == 13) {
+			array[Constantes.PETITE_SUITE] = 77;
+		}
+		else if (choix == 14) {
+			array[Constantes.GROSSE_SUITE] = 100;
+		}
+		else if (choix == 15) {
+			array[Constantes.SURPLUS] = 98;
+		}
+		else if (choix == 16) {
+			array[Constantes.YUM] = 250;
+		}
+
+		
+		return array;
+	}
 	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
 		IncrementTour++;
