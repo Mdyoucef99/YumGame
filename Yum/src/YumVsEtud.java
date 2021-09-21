@@ -24,7 +24,7 @@ import java.util.Scanner;
  *          contribué en écriture de code et de commentaires.
  *          
  * Auteur : Youcef mekki daouadji
- * Auteur :
+ * Auteur : Rada Leng
  * Auteur :
  * Auteur :
  * Auteur :
