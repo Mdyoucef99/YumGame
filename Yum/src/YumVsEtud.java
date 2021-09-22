@@ -52,7 +52,7 @@ public class YumVsEtud {
 		   InitialShuflle(ArrayDice); //génération des chiffre aléatoirement entre 1 et 6; 
 		   
 		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
-		   ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
+		 //  ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
 		  //AjoutPointGrille(ArrayPoint);
 		  
 		   System.out.print("Entrer  les des  a changer - " );
@@ -67,7 +67,6 @@ public class YumVsEtud {
 		   else if(intdice>0)
 		   {
 			   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des
-			  
 			   ModAffichage.afficherDes(ArrayDice);
 			   CountDuplicates(ArrayDice);
 		   }
@@ -145,7 +144,6 @@ public class YumVsEtud {
 	}
 	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
-		IncrementTour++;
 	    Random random = new Random();
 	    for (int i = 0; i < array.length; i++) 
 	    {
@@ -159,7 +157,7 @@ public class YumVsEtud {
 				
 	public static int[] ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
-		 IncrementTour++;
+		
 		 Random random = new Random();
 		 for(char c : Index.toCharArray()) 
 		 {
@@ -170,27 +168,44 @@ public class YumVsEtud {
 		 return arrayParam;
 	} 
 	
+	
+	public static int countOccurrences(int array[], int dup) /*Fonction a enlever et changer plutard*/
+    {
+        int resultat = 0;
+        for (int i=0; i<array.length; i++)
+            if (dup == array[i]) {
+            	resultat++;
+            }
+        return resultat;
+    }
+	
+	
+	
 	public static void CountDuplicates(int[]array) //conter le nombre de fois qu'une valeur se repete dans le tableau
 	{
-		int r=0;
 		
+		int brelan =0;
+		int carre = 0;
 		for (int i = 0; i < array.length; i++) 
 		{
+			int n = countOccurrences(array,array[i]);
+			
 		     for (int j = i + 1 ; j < array.length; j++) 
 		          {
 		          if (array[i]==array[j]) 
 		          {
-		            r++;   
-		            
-		            if(r==3) 
-		            {
-		            	System.out.println("Brelan "+ array[i]*3);
-		            }
-		            
-		            else if(r==4) 
-		            {
-		            	System.out.println(" Carre "+array[i]*4);
-		            }
+		           if(n==3) 
+		           {
+		        	  brelan = array[i]*3;
+		        	  System.out.println(brelan);
+		           }
+		           
+		           if(n==4) 
+		           {
+		        	   carre = array[i]*4;
+		        	   System.out.println(carre);
+		        			  
+		           }
 		            
 		          }
 		          
