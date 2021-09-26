@@ -8,20 +8,21 @@ import java.util.Scanner;
 
 /*
 
- * Programme principal qui dÃ©marre le jeu de YUM pour un seul joueur.
- * 
- * Une sÃ©rie de 5 dÃ©s est gÃ©nÃ©rÃ© alÃ©atoirement et le joueur a droit
- * a changer les dÃ©s qu'il dÃ©sire Ã  deux reprises Ã  moins qu'il les
- * garde tous.
- * 
- * Par la suite, le programme offre toutes les possibilitÃ©s de points 
- * pouvant Ãªtre jouÃ©s et le joueur dÃ©cide quel est son choix parmi 
- * ces possibilitÃ©s.
- * 
- * Dans le cadre du cours inf111 (voir Ã©nnoncÃ© fourni).
- * 
- * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment 
- *          contribuÃ© en Ã©criture de code et de commentaires.
+ ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
+ *  
+ * Une série de 5 dés est généré aléatoirement et le joueur a droit 
+ * a changer les dés qu'il désire à deux reprises à moins qu'il les 
+ * garde tous. 
+ *  
+ * Par la suite, le programme offre toutes les possibilités de points  
+ * pouvant être joués et le joueur décide quel est son choix parmi  
+ * ces possibilités. 
+ *  
+ * Dans le cadre du cours inf111 (voir énnoncé fourni). 
+ *  
+ * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment  
+ *          contribué en écriture de code et de commentaires. 
+ *           
  *          
  * Auteur : Youcef mekki daouadji
  * Auteur : Rada Leng
@@ -30,7 +31,7 @@ import java.util.Scanner;
  * Auteur :
  * 
  * 
- * Auteur : Pierre BÃ©lisle
+ * Auteur : Pierre Bélisle 
  *          
  * Version : Copyright A2021
  */
@@ -38,26 +39,48 @@ import java.util.Scanner;
 public class YumVsEtud {
 
 	
-	// Les constantes sont dÃ©finies dans le module Constantes.java
-	// Si vous en ajoutez, faÃ®tes-le ici.
+	// Les constantes sont défines dans le module Constantes.java
+	// Si vous en ajoutez, faites-le ici.
 	
 	public static int IncrementTour=0;
-	// Permet la saisie de donnÃ©e au clavier en mode console.
+	// Permet la saisie de donné au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
 		   int[] ArrayDice = new int[5]; //creation des 5 des.
-		   int[] ArrayPoint = new int[19];
-		   InitialShuflle(ArrayDice); //gÃ©nÃ©ration des chiffre alÃ©atoirement entre 1 et 6; 
 		   
-		   ModAffichage.afficherDes(ArrayDice);//affichage des dÃ©s 
-		 //  ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
-		  //AjoutPointGrille(ArrayPoint);
+		   int[] ArrayPoint = new int[19];
+		   
+		   int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des dÃ©s 
+		   
+		   InitialShuflle(ArrayDice); //génération des chiffre aléatoirement entre 1 et 6; 
+		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
+		
 		  
+		   int [] test = {1,2,3,6,6}; 
+		    
+		   RemplirTabOccurrence(test,tabOccurrence); 
+		    
+		   if(mainPleine(tabOccurrence)) { 
+			   System.out.print("Main pleine(25 points)  \n" ); 
+		   } 
+		    
+		   if(courteSequence(tabOccurrence)) { 
+			   System.out.print("Courte SÃ©quence(15 points)  \n" ); 
+		   } 
+		    
+		   if(longueSequence(tabOccurrence)) { 
+			   System.out.print("Longue SÃ©quence(20 points)  \n" ); 
+		   } 
+		   
+		   
+		   
+		   
 		   System.out.print("Entrer  les des  a changer - " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   int intdice = Integer.parseInt(NumberChangeOfDice);  //Convertion du string en integer
+		   
 		   
 		   if(intdice<=0) //checker si le input est positif
 		   {
@@ -70,14 +93,10 @@ public class YumVsEtud {
 			   ModAffichage.afficherDes(ArrayDice);
 			   CountDuplicates(ArrayDice);
 		   }
-		   
-		 
-		   
-		   
 		 
 		   
 	    /* Traduisez ici l'algorithme du programme principal
-	     * dÃ©crit dans l'Ã©noncÃ© et commenter votre code au fur et Ã  mesure.
+	    
 	     */
 		   
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
@@ -85,7 +104,7 @@ public class YumVsEtud {
 	
 	
 	/*
-	 * Ã‰crivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
+	 * Ãƒâ€°crivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
 	
 	/*
@@ -213,6 +232,73 @@ public class YumVsEtud {
 		    
 		 }
 		
+	}
+	
+	
+	public static boolean mainPleine(int [] tabOccurrence) {//Trouve si il y a une main pleine 
+		 
+		boolean mainPleine = false;	 
+		int identique2 = 0; 
+		int identique3 = 0; 
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==3) { 
+				identique3++; 
+			} 
+			if(tabOccurrence[i]==2) { 
+				identique2++; 
+			}	 
+		} 
+		 
+		if(identique3 != 0 && identique2 != 0) { 
+			mainPleine = true; 
+		} 
+ 
+		return mainPleine; 
+	} 
+	public static boolean longueSequence(int [] tabOccurrence) {//Trouve si il y a une longue sequence 
+ 
+		boolean longueSequence = false;	 
+		int compteur = 0; 
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==1) { 
+				compteur++; 
+			}	 
+		} 
+		 
+		if(compteur==5) { 
+			if(tabOccurrence[1] == 0 || tabOccurrence[6] == 0) { 
+				longueSequence = true; 
+			} 
+			 
+		} 
+ 
+		return longueSequence; 
+	} 
+	public static boolean courteSequence(int [] tabOccurrence) {//Trouve si il y a une courte sequence 
+ 
+		boolean courtSequence = false;	 
+		int compteur = 0; 
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==1 && compteur < 4) { 
+				compteur++; 
+			}	 
+		} 
+		 
+		if(compteur==4) { 
+			if(tabOccurrence[1] == 0 || tabOccurrence[6] == 0 || tabOccurrence[5] == 0 || tabOccurrence[2] == 0) { 
+				courtSequence = true; 
+			} 
+		} 
+ 
+		return courtSequence; 
+	} 
+	public static void RemplirTabOccurrence(int [] tabDes, int []tabOccurrence) { 
+		for(int i=0;i<tabDes.length;i++){ 
+			tabOccurrence[tabDes[i]]++;//Ajouter au tableau le nombre d'occurence d'un dés en utilisant la position dans le tableau qui lui correspond 
+		} 
 	}
 	
 }
