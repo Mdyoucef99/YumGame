@@ -85,8 +85,6 @@ public class YumVsEtud {
 		   } 
 		   
 		
-		   
-		   
 		   while(CompteurTour< Constantes.NB_ESSAIS) 
 		  		 {
 		  			 String Input = InputDesARouler();
@@ -234,39 +232,29 @@ public class YumVsEtud {
 	
 	
 	
-	public static void CountDuplicates(int[]array) //conter le nombre de fois qu'une valeur se repete dans le tableau
+	public static int CountDuplicates(int[]array) //conter le nombre de fois qu'une valeur se repete dans le tableau
 	{
 		
-		int brelan =0;
-		int carre = 0;
+	    int a=0;
+	    
 		for (int i = 0; i < array.length; i++) 
 		{
-			int n = countOccurrences(array,array[i]);
-			
 		     for (int j = i + 1 ; j < array.length; j++) 
-		          {
-		          if (array[i]==array[j]) 
-		          {
-		           if(n==3) 
-		           {
-		        	  brelan = array[i]*3;
-		        	  System.out.println(brelan);
-		           }
-		           
-		           if(n==4) 
-		           {
-		        	   carre = array[i]*4;
-		        	   System.out.println(carre);
-		        			  
-		           }
-		            
-		          }
+		       {
+		    	 
+		        if(array[i]==array[j]) 
+		        {
+		        	 a++;
+		        }
+		    	  
+		        }
 		          
 		     }
-		    
+		
+		    return a;
 		 }
 		
-	}
+	
 	
 	
 	
