@@ -1,9 +1,7 @@
 package src;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
-
 
 
 /*
@@ -43,7 +41,7 @@ public class YumVsEtud {
 	// Si vous en ajoutez, faites-le ici.
 	
 	 public static int[] Grillepossibilite = new int[12];
-	 
+	 public static int  CompteurTour = 1;
 	 
 	 
 	// Permet la saisie de donné au clavier en mode console.
@@ -55,18 +53,18 @@ public class YumVsEtud {
 		   int[] ArrayPoint = new int[19];
 		   int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des dÃ©s 
 		  
-		   int CompteurTour = 1;
-		   
-		   
-		   
-		   
-		   
+		  
+
 		   
 		   ModAffichage.afficherGrille(ArrayPoint);
 		   
+		  
+		    
 		   InitialShuflle(ArrayDice); //génération des chiffre aléatoirement entre 1 et 6; 
 		   
 		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
+		   Additiondelespoints(ArrayDice);
+		   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		   
 		   
 		   
@@ -87,9 +85,10 @@ public class YumVsEtud {
 		   } 
 		   
 		
+		   
+		   
 		   while(CompteurTour< Constantes.NB_ESSAIS) 
 		  		 {
-			   
 		  			 String Input = InputDesARouler();
 		  			 
 		  			 int intdice = Integer.parseInt(Input);  //Convertion du string en integer
@@ -120,19 +119,13 @@ public class YumVsEtud {
 		  Additiondelespoints(ArrayDice);
 		  ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		   
-		   
-		   
-		   
-		   
-		   
-		   
+		 
 	    /* Traduisez ici l'algorithme du programme principal
 	    
 	     */
 		   
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
-	    
-	    
+
 	}
 	
 	
@@ -143,9 +136,7 @@ public class YumVsEtud {
 	/*
 	fonction imcomplet pour rajouter les points dans la grille principale
 	*/
-	
-		
-	
+
 	
 	public static int[] AjoutPointGrille(int[] array) {
 		
@@ -197,19 +188,23 @@ public class YumVsEtud {
 		
 		return array;
 	}
+	
+	
 	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
 	    Random random = new Random();
+	    
 	    for (int i = 0; i < array.length; i++) 
 	    {
 	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
 	        
-	       
 	    }
 	 
 	    return array;
 	}
-				
+			
+	
+	
 	public static int[] ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
 		 Random random = new Random();
@@ -223,6 +218,8 @@ public class YumVsEtud {
 	} 
 	
 	
+	
+	
 	public static int countOccurrences(int array[], int dup) /*Fonction a enlever et changer plutard*/
     {
         int resultat = 0;
@@ -232,6 +229,8 @@ public class YumVsEtud {
             }
         return resultat;
     }
+	
+	
 	
 	
 	
@@ -346,9 +345,7 @@ public class YumVsEtud {
 		} 
 	}
 	
-	
-	
-	
+
 	public static String InputDesARouler() 
 	{
 		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dés- " );
@@ -369,8 +366,12 @@ public class YumVsEtud {
 		int e = 0;
 		int f = 0;
 				
+		
 		for(int i=0;i<tab.length;i++) 
 		{
+			
+			if (tab[i] != 0){
+				
 			if(tab[i]==1) 
 			{
 				 a += tab[i];
@@ -401,8 +402,10 @@ public class YumVsEtud {
 				 f += tab[i];
 			}
 			
+			}
 			
-		}
+			
+		}	
 		
 		  Grillepossibilite[1]= a;
 		  Grillepossibilite[2]= b;
@@ -412,8 +415,6 @@ public class YumVsEtud {
 		  Grillepossibilite[6]= f;
 		
 	}
-	
-	
 	
 	
 }
