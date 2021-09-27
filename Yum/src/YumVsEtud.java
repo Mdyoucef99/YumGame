@@ -40,7 +40,7 @@ public class YumVsEtud {
 	// Les constantes sont défines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
-	 public static int[] Grillepossibilite = new int[12];
+	 public static int[] Grillepossibilite = new int[25];
 	 public static int  CompteurTour = 1;
 	 
 	 
