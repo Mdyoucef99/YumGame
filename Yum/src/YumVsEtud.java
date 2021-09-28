@@ -41,11 +41,11 @@ public class YumVsEtud {
 	// Les constantes sont d�fines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
-	 public static int[] Grillepossibilite = new int[25];
-	 public static int  CompteurTour = 1;
-	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des 
-	  public static int[] ArrayDice = new int[5]; //creation des 5 des. 
-	  public static int[] ArrayPoint = new int[19];
+	  public static int[] Grillepossibilite = new int[Constantes.NB_CASES];
+	  public static int  CompteurTour = 1;
+	  public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des 
+	  public static int[] ArrayDice = new int[Constantes.NB_DES]; //creation des 5 des. 
+	  public static int[] ArrayPoint = new int[Constantes.NB_CASES];
 	 
 	// Permet la saisie de donn� au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
@@ -411,8 +411,7 @@ public class YumVsEtud {
 			   Grillepossibilite[Constantes.YUM] = 30;
  
 		   }
-		   
-		   
+ 
 		   carre(tabOccurrence);
 
 		   berlan(tabOccurrence);
