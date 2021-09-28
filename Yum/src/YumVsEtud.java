@@ -1,28 +1,26 @@
 
 package src;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 
-
 /*
 
- ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
+ ** Programme principal qui dï¿½marre le jeu de YUM pour un seul joueur. 
  *  
- * Une série de 5 dés est généré aléatoirement et le joueur a droit 
- * a changer les dés qu'il désire à deux reprises à moins qu'il les 
+ * Une sï¿½rie de 5 dï¿½s est gï¿½nï¿½rï¿½ alï¿½atoirement et le joueur a droit 
+ * a changer les dï¿½s qu'il dï¿½sire ï¿½ deux reprises ï¿½ moins qu'il les 
  * garde tous. 
  *  
- * Par la suite, le programme offre toutes les possibilités de points  
- * pouvant être joués et le joueur décide quel est son choix parmi  
- * ces possibilités. 
+ * Par la suite, le programme offre toutes les possibilitï¿½s de points  
+ * pouvant ï¿½tre jouï¿½s et le joueur dï¿½cide quel est son choix parmi  
+ * ces possibilitï¿½s. 
  *  
- * Dans le cadre du cours inf111 (voir énnoncé fourni). 
+ * Dans le cadre du cours inf111 (voir ï¿½nnoncï¿½ fourni). 
  *  
  * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment  
- *          contribué en écriture de code et de commentaires. 
+ *          contribuï¿½ en ï¿½criture de code et de commentaires. 
  *           
  *          
  * Auteur : Youcef mekki daouadji
@@ -32,7 +30,7 @@ import java.util.Scanner;
  * Auteur :
  * 
  * 
- * Auteur : Pierre Bélisle 
+ * Auteur : Pierre Bï¿½lisle 
  *          
  * Version : Copyright A2021
  */
@@ -40,78 +38,69 @@ import java.util.Scanner;
 public class YumVsEtud {
 
 	
-	// Les constantes sont défines dans le module Constantes.java
+	// Les constantes sont dï¿½fines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
-	public static int IncrementTour=0;
-	// Permet la saisie de donné au clavier en mode console.
+	 public static int[] Grillepossibilite = new int[25];
+	 public static int  CompteurTour = 1;
+	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des 
+	  public static int[] ArrayDice = new int[5]; //creation des 5 des. 
+	  public static int[] ArrayPoint = new int[19];
+	 
+	// Permet la saisie de donnï¿½ au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
-		   int[] ArrayDice = new int[5]; //creation des 5 des.
-		   
-		   int[] ArrayPoint = new int[19];
-		   
-		   int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des dÃ©s 
-		   
-		   //InitialShuflle(ArrayDice); //génération des chiffre aléatoirement entre 1 et 6; 
-		   //ModAffichage.afficherDes(ArrayDice);//affichage des dés 
 		
-		  
-		   int [] test = {6,6,6,6,6}; 
-		    
-		   RemplirTabOccurrence(test,tabOccurrence); 
-		    
-		   if(mainPleine(tabOccurrence)) { 
-			   System.out.print("Main pleine(25 points)  \n" ); 
-		   } 
-		    
-		   if(courteSequence(tabOccurrence)) { 
-			   System.out.print("Courte SÃ©quence(15 points)  \n" ); 
-		   } 
-		    
-		   if(longueSequence(tabOccurrence)) { 
-			   System.out.print("Longue SÃ©quence(20 points)  \n" ); 
-		   }
-		   
-		   if(yum(tabOccurrence)) { 
-			   System.out.print("Yum(30 points)  \n" ); 
-		   }
-		   
-		   if(carre(tabOccurrence)>0) { 
-			   System.out.print("Carre("+carre(tabOccurrence) +" points)  \n" ); 
-		   }
-		   
-		   if(berlan(tabOccurrence)>0) { 
-			   System.out.print("Berlan("+berlan(tabOccurrence)+" points)  \n" ); 
-		   }
-		   
-		   System.out.print("Surplus("+surplus(test)+" points)  \n" );
-		   
-		   /*System.out.print("Entrer  les des  a changer - " );
-		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
-		   int intdice = Integer.parseInt(NumberChangeOfDice);  //Convertion du string en integer
+           ModAffichage.afficherGrille(ArrayPoint);
+		   InitialShuflle(ArrayDice); //
+		   ModAffichage.afficherDes(ArrayDice);//affichage des dï¿½s 
+		   RemplirTabOccurrence(ArrayDice,tabOccurrence); 
+		   Additiondelespoints(ArrayDice);
+		   CheckCondition();
+		   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		   
 		   
-		   if(intdice<=0) //checker si le input est positif
-		   {
-			   System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
-			   ModAffichage.afficherDes(ArrayDice);
-		   }
-		   else if(intdice>0)
-		   {
-			   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des
-			   ModAffichage.afficherDes(ArrayDice);
-			   CountDuplicates(ArrayDice);
-		   }*/
-		 
+		   while(CompteurTour< Constantes.NB_ESSAIS) 
+		  		 {
+		  			 String Input = InputDesARouler();
+		  			 int intdice = Integer.parseInt(Input);  //Convertion du string en integer
+		  			 
+		  			 if(intdice<=0) 
+		  			 {
+		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
+		  				 ModAffichage.afficherDes(ArrayDice);
+		  				 Additiondelespoints(ArrayDice);
+		  				 CheckCondition();
+		  				 ModAffichage.afficherGrillePossibilite(Grillepossibilite);
+		  				 CompteurTour=Constantes.NB_ESSAIS;
+		  				 System.out.print("COMPTEUR EST A  : " + CompteurTour + "\n" );
+		  			 }
+		  			 
+  
+		  			  else if(intdice>0)
+		  			  {
+		  				   System.out.print("Nouvelle main de dées :  \n" );
+		  				   ReshuffleDice(ArrayDice,Input);
+		  				   ModAffichage.afficherDes(ArrayDice);
+		  				   Additiondelespoints(ArrayDice);
+		  				   CheckCondition();
+		  				   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
+		  				   CompteurTour++;
+		  				   System.out.print("COMPTEUR EST A  : " + CompteurTour + "\n" );
+		  				   
+		  			  }
+		  			 
+		  		 }
 		   
+ 
 	    /* Traduisez ici l'algorithme du programme principal
 	    
 	     */
 		   
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
+
 	}
 	
 	
@@ -122,8 +111,9 @@ public class YumVsEtud {
 	/*
 	fonction imcomplet pour rajouter les points dans la grille principale
 	*/
+
 	
-		public static int[] AjoutPointGrille(int[] array) {
+	public static int[] AjoutPointGrille(int[] array) {
 		
 		
 		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum");
@@ -170,22 +160,25 @@ public class YumVsEtud {
 			array[Constantes.YUM] = 250;
 		}
 
-		
 		return array;
 	}
+	
+	
 	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
 	    Random random = new Random();
+	    
 	    for (int i = 0; i < array.length; i++) 
 	    {
 	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
 	        
-	       
 	    }
 	 
 	    return array;
 	}
-				
+			
+	
+	
 	public static int[] ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
 		
@@ -271,6 +264,7 @@ public class YumVsEtud {
  
 		return yum; 
 	}
+	
 	public static int carre(int [] tabOccurrence) {//Trouve si il y a un carre 
 		 
 		int total= 0;  
@@ -278,12 +272,17 @@ public class YumVsEtud {
 		for (int i = 0; i < tabOccurrence.length; i++) { 
 			if(tabOccurrence[i]>=4) { 
 				total = 4*i; 
+				
 			}	 
 		} 
+		
+		 Grillepossibilite[Constantes.CARRE] = total;
+		
  
 		return total; 
 	}
-	public static int berlan(int [] tabOccurrence) {//Trouve si il y a un berlan 
+	public static int berlan(int [] tabOccurrence) 
+	{//Trouve si il y a un berlan 
 		 
 		int total= 0;  
 		 
@@ -292,10 +291,12 @@ public class YumVsEtud {
 				total = 3*i; 
 			}	 
 		} 
- 
+		   Grillepossibilite[Constantes.BRELAN] = total;
 		return total; 
 	}
-	public static int surplus(int [] tab) { 
+	
+	public static int surplus(int [] tab) 
+	{ 
 		 
 		int total= 0;  
 		 
@@ -303,12 +304,122 @@ public class YumVsEtud {
 			total += tab[i];	 
 		} 
  
+		 Grillepossibilite[Constantes.SURPLUS] = total;
 		return total; 
 	}
-	public static void RemplirTabOccurrence(int [] tabDes, int []tabOccurrence) { 
+	public static void RemplirTabOccurrence(int [] tabDes, int []tabOccurrence) 
+	{ 
 		for(int i=0;i<tabDes.length;i++){ 
-			tabOccurrence[tabDes[i]]++;//Ajouter au tableau le nombre d'occurence d'un dés en utilisant la position dans le tableau qui lui correspond 
+			tabOccurrence[tabDes[i]]++;//Ajouter au tableau le nombre d'occurence d'un des en utilisant la position dans le tableau qui lui correspond 
 		} 
 	}
 	
+
+	public static String InputDesARouler() 
+	{
+		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dï¿½s- " );
+		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
+		   return NumberChangeOfDice;
+		
+	}
+	
+
+	public static void Additiondelespoints(int[] tab) 
+	{
+		
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		int d = 0;
+		int e = 0;
+		int f = 0;
+				
+		
+		for(int i=0;i<tab.length;i++) 
+		{
+			
+			if (tab[i] != 0){
+				
+			if(tab[i]==1) 
+			{
+				 a += tab[i];
+			}
+			
+			if(tab[i]==2) 
+			{
+				 b += tab[i];
+			}
+			
+			if(tab[i]==3) 
+			{
+				 c += tab[i];
+			}
+			
+			if(tab[i]==4) 
+			{
+				 d += tab[i];
+			}
+			
+			if(tab[i]==5) 
+			{
+				 e += tab[i];
+			}
+			
+			if(tab[i]==6) 
+			{
+				 f += tab[i];
+			}
+			
+			}
+			
+			
+		}	
+		
+		  Grillepossibilite[1]= a;
+		  Grillepossibilite[2]= b;
+		  Grillepossibilite[3]= c;
+		  Grillepossibilite[4]= d;
+		  Grillepossibilite[5]= e;
+		  Grillepossibilite[6]= f;
+		
+	}
+	
+	
+	public static void CheckCondition() 
+	{
+		
+		if(mainPleine(tabOccurrence)) 
+		   { 
+			   Grillepossibilite[Constantes.MAIN_PLEINE] = 25;
+			   
+		   } 
+		    
+		   if(courteSequence(tabOccurrence)) { 
+
+			   Grillepossibilite[Constantes.PETITE_SUITE] = 15;
+			   
+		   } 
+		    
+		   if(longueSequence(tabOccurrence)) { 
+			  
+			   Grillepossibilite[Constantes.GROSSE_SUITE] = 20;
+			   
+		   }
+		   
+		   if(yum(tabOccurrence)) { 
+
+			   Grillepossibilite[Constantes.YUM] = 30;
+ 
+		   }
+		   
+		   
+		   carre(tabOccurrence);
+
+		   berlan(tabOccurrence);
+		   
+		   surplus(ArrayDice);
+
+		   
+	}
+
 }
