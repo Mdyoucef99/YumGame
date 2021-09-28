@@ -1,12 +1,8 @@
-
-package src;
-
 import java.util.Random;
 import java.util.Scanner;
 
 
 /*
-
  ** Programme principal qui d�marre le jeu de YUM pour un seul joueur. 
  *  
  * Une s�rie de 5 d�s est g�n�r� al�atoirement et le joueur a droit 
@@ -53,11 +49,13 @@ public class YumVsEtud {
 	public static void main(String[] args){
 		
 		
+		   InitialisePointGrille(ArrayPoint);
            ModAffichage.afficherGrille(ArrayPoint);
 		   InitialShuflle(ArrayDice); //
 		   ModAffichage.afficherDes(ArrayDice);//affichage des d�s 
 		   RemplirTabOccurrence(ArrayDice,tabOccurrence); 
 		   Additiondelespoints(ArrayDice);
+
 		   CheckCondition();
 		   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		   
@@ -93,7 +91,8 @@ public class YumVsEtud {
 		  			  }
 		  			 
 		  		 }
-		   
+           AjoutPointGrille(ArrayPoint,45);
+           ModAffichage.afficherGrille(ArrayPoint);
  
 	    /* Traduisez ici l'algorithme du programme principal
 	    
@@ -112,8 +111,20 @@ public class YumVsEtud {
 	fonction imcomplet pour rajouter les points dans la grille principale
 	*/
 
+	public static int[] InitialisePointGrille(int[] array) {
+		
+		for(int i = 0 ; i < array.length ; i++) {
+			array[i] = -1;
+		}
+		array[Constantes.SOUS_TOTAL_HAUT] = 0;
+		array[Constantes.BONUS_DU_HAUT] = 0;
+		array[Constantes.TOTAL_HAUT] = 0;
+		array[Constantes.TOTAL_BAS] = 0;
+		array[Constantes.GRAND_TOTAL] = 0;
+		return array;
+	}
 	
-	public static int[] AjoutPointGrille(int[] array) {
+	public static int[] AjoutPointGrille(int[] array, int point) {
 		
 		
 		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum");
@@ -121,45 +132,48 @@ public class YumVsEtud {
 
 		
 		if (choix == 1) {
-			array[1] = 25;
+			array[1] =point;
 		}
 		else if (choix == 2) {
-			array[2] = 12;
+			array[2] = point;
 		}
 		else if (choix == 3) {
-			array[3] = 17;
+			array[3] = point;
 		}
 		else if (choix == 4) {
-			array[4] = 9;
+			array[4] = point;
 		}
 		else if (choix == 5) {
-			array[5] = 22;
+			array[5] = point;
 		}
 		else if (choix == 6) {
-			array[6] = 19;
+			array[6] = point;
 		}
 		else if (choix == 10) {
-			array[Constantes.BRELAN] = 25;
+			array[Constantes.BRELAN] = point;
 		}
 		else if (choix == 11) {
-			array[Constantes.CARRE] = 44;
+			array[Constantes.CARRE] = point;
 		}
 		else if (choix == 12) {
-			array[Constantes.MAIN_PLEINE] = 24;
+			array[Constantes.MAIN_PLEINE] = point;
 		}
 		else if (choix == 13) {
-			array[Constantes.PETITE_SUITE] = 77;
+			array[Constantes.PETITE_SUITE] = point;
 		}
 		else if (choix == 14) {
-			array[Constantes.GROSSE_SUITE] = 100;
+			array[Constantes.GROSSE_SUITE] = point;
 		}
 		else if (choix == 15) {
-			array[Constantes.SURPLUS] = 98;
+			array[Constantes.SURPLUS] = point;
 		}
 		else if (choix == 16) {
-			array[Constantes.YUM] = 250;
+			array[Constantes.YUM] = point;
 		}
 
+		array[Constantes.SOUS_TOTAL_HAUT] += point;
+		array[Constantes.TOTAL_HAUT] += point;
+		array[Constantes.GRAND_TOTAL] += point;
 		return array;
 	}
 	
