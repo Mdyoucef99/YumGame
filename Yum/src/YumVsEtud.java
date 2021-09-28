@@ -1,3 +1,4 @@
+
 package src;
 
 import java.util.Arrays;
@@ -8,29 +9,30 @@ import java.util.Scanner;
 
 /*
 
- * Programme principal qui d√©marre le jeu de YUM pour un seul joueur.
- * 
- * Une s√©rie de 5 d√©s est g√©n√©r√© al√©atoirement et le joueur a droit
- * a changer les d√©s qu'il d√©sire √† deux reprises √† moins qu'il les
- * garde tous.
- * 
- * Par la suite, le programme offre toutes les possibilit√©s de points 
- * pouvant √™tre jou√©s et le joueur d√©cide quel est son choix parmi 
- * ces possibilit√©s.
- * 
- * Dans le cadre du cours inf111 (voir √©nnonc√© fourni).
- * 
- * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment 
- *          contribu√© en √©criture de code et de commentaires.
+ ** Programme principal qui dÈmarre le jeu de YUM pour un seul joueur. 
+ *  
+ * Une sÈrie de 5 dÈs est gÈnÈrÈ alÈatoirement et le joueur a droit 
+ * a changer les dÈs qu'il dÈsire ‡ deux reprises ‡ moins qu'il les 
+ * garde tous. 
+ *  
+ * Par la suite, le programme offre toutes les possibilitÈs de points  
+ * pouvant Ítre jouÈs et le joueur dÈcide quel est son choix parmi  
+ * ces possibilitÈs. 
+ *  
+ * Dans le cadre du cours inf111 (voir ÈnnoncÈ fourni). 
+ *  
+ * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment  
+ *          contribuÈ en Ècriture de code et de commentaires. 
+ *           
  *          
  * Auteur : Youcef mekki daouadji
  * Auteur : Rada Leng
- * Auteur :
+ * Auteur : Antoine Bolduc
  * Auteur :
  * Auteur :
  * 
  * 
- * Auteur : Pierre B√©lisle
+ * Auteur : Pierre BÈlisle 
  *          
  * Version : Copyright A2021
  */
@@ -38,26 +40,59 @@ import java.util.Scanner;
 public class YumVsEtud {
 
 	
-	// Les constantes sont d√©finies dans le module Constantes.java
-	// Si vous en ajoutez, fa√Ætes-le ici.
+	// Les constantes sont dÈfines dans le module Constantes.java
+	// Si vous en ajoutez, faites-le ici.
 	
 	public static int IncrementTour=0;
-	// Permet la saisie de donn√©e au clavier en mode console.
+	// Permet la saisie de donnÈ au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
 		   int[] ArrayDice = new int[5]; //creation des 5 des.
-		   int[] ArrayPoint = new int[19];
-		   InitialShuflle(ArrayDice); //g√©n√©ration des chiffre al√©atoirement entre 1 et 6; 
 		   
-		   ModAffichage.afficherDes(ArrayDice);//affichage des d√©s 
-		   ModAffichage.afficherGrillePossibilite(ArrayDice);//Affichage grille possibilite pares shuffle initial 
-		  //AjoutPointGrille(ArrayPoint);
+		   int[] ArrayPoint = new int[19];
+		   
+		   int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des d√©s 
+		   
+		   //InitialShuflle(ArrayDice); //gÈnÈration des chiffre alÈatoirement entre 1 et 6; 
+		   //ModAffichage.afficherDes(ArrayDice);//affichage des dÈs 
+		
 		  
-		   System.out.print("Entrer  les des  a changer - " );
+		   int [] test = {6,6,6,6,6}; 
+		    
+		   RemplirTabOccurrence(test,tabOccurrence); 
+		    
+		   if(mainPleine(tabOccurrence)) { 
+			   System.out.print("Main pleine(25 points)  \n" ); 
+		   } 
+		    
+		   if(courteSequence(tabOccurrence)) { 
+			   System.out.print("Courte S√©quence(15 points)  \n" ); 
+		   } 
+		    
+		   if(longueSequence(tabOccurrence)) { 
+			   System.out.print("Longue S√©quence(20 points)  \n" ); 
+		   }
+		   
+		   if(yum(tabOccurrence)) { 
+			   System.out.print("Yum(30 points)  \n" ); 
+		   }
+		   
+		   if(carre(tabOccurrence)>0) { 
+			   System.out.print("Carre("+carre(tabOccurrence) +" points)  \n" ); 
+		   }
+		   
+		   if(berlan(tabOccurrence)>0) { 
+			   System.out.print("Berlan("+berlan(tabOccurrence)+" points)  \n" ); 
+		   }
+		   
+		   System.out.print("Surplus("+surplus(test)+" points)  \n" );
+		   
+		   /*System.out.print("Entrer  les des  a changer - " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   int intdice = Integer.parseInt(NumberChangeOfDice);  //Convertion du string en integer
+		   
 		   
 		   if(intdice<=0) //checker si le input est positif
 		   {
@@ -67,18 +102,13 @@ public class YumVsEtud {
 		   else if(intdice>0)
 		   {
 			   ReshuffleDice(ArrayDice,NumberChangeOfDice); //changement des des
-			  
 			   ModAffichage.afficherDes(ArrayDice);
 			   CountDuplicates(ArrayDice);
-		   }
-		   
-		 
-		   
-		   
+		   }*/
 		 
 		   
 	    /* Traduisez ici l'algorithme du programme principal
-	     * d√©crit dans l'√©nonc√© et commenter votre code au fur et √† mesure.
+	    
 	     */
 		   
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
@@ -86,7 +116,7 @@ public class YumVsEtud {
 	
 	
 	/*
-	 * √âcrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
+	 * √É‚Ä∞crivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
 	
 	/*
@@ -145,7 +175,6 @@ public class YumVsEtud {
 	}
 	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
-		IncrementTour++;
 	    Random random = new Random();
 	    for (int i = 0; i < array.length; i++) 
 	    {
@@ -159,7 +188,7 @@ public class YumVsEtud {
 				
 	public static int[] ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
-		 IncrementTour++;
+		
 		 Random random = new Random();
 		 for(char c : Index.toCharArray()) 
 		 {
@@ -170,34 +199,116 @@ public class YumVsEtud {
 		 return arrayParam;
 	} 
 	
-	public static void CountDuplicates(int[]array) //conter le nombre de fois qu'une valeur se repete dans le tableau
-	{
-		int r=0;
-		
-		for (int i = 0; i < array.length; i++) 
-		{
-		     for (int j = i + 1 ; j < array.length; j++) 
-		          {
-		          if (array[i]==array[j]) 
-		          {
-		            r++;   
-		            
-		            if(r==3) 
-		            {
-		            	System.out.println("Brelan "+ array[i]*3);
-		            }
-		            
-		            else if(r==4) 
-		            {
-		            	System.out.println(" Carre "+array[i]*4);
-		            }
-		            
-		          }
-		          
-		     }
-		    
-		 }
-		
+	public static boolean mainPleine(int [] tabOccurrence) {//Trouve si il y a une main pleine 
+		 
+		boolean mainPleine = false;	 
+		int identique2 = 0; 
+		int identique3 = 0; 
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==3) { 
+				identique3++; 
+			} 
+			if(tabOccurrence[i]==2) { 
+				identique2++; 
+			}	 
+		} 
+		 
+		if(identique3 != 0 && identique2 != 0) { 
+			mainPleine = true; 
+		} 
+ 
+		return mainPleine; 
+	} 
+	public static boolean longueSequence(int [] tabOccurrence) {//Trouve si il y a une longue sequence 
+ 
+		boolean longueSequence = false;	 
+		int compteur = 0; 
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==1) { 
+				compteur++; 
+			}	 
+		} 
+		 
+		if(compteur==5) { 
+			if(tabOccurrence[1] == 0 || tabOccurrence[6] == 0) { 
+				longueSequence = true; 
+			} 
+			 
+		} 
+ 
+		return longueSequence; 
+	} 
+	public static boolean courteSequence(int [] tabOccurrence) {//Trouve si il y a une courte sequence 
+ 
+		boolean courtSequence = false;	 
+		int compteur = 0; 
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==1 && compteur < 4) { 
+				compteur++; 
+			}	 
+		} 
+		 
+		if(compteur==4) { 
+			if(tabOccurrence[1] == 0 || tabOccurrence[6] == 0 || tabOccurrence[5] == 0 || tabOccurrence[2] == 0) { 
+				courtSequence = true; 
+			} 
+		} 
+ 
+		return courtSequence; 
+	}
+	public static boolean yum(int [] tabOccurrence) {//Trouve si il y a un yum 
+		 
+		boolean yum = false;	  
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]==5) { 
+				yum = true; 
+			}	 
+		} 
+ 
+		return yum; 
+	}
+	public static int carre(int [] tabOccurrence) {//Trouve si il y a un carre 
+		 
+		int total= 0;  
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]>=4) { 
+				total = 4*i; 
+			}	 
+		} 
+ 
+		return total; 
+	}
+	public static int berlan(int [] tabOccurrence) {//Trouve si il y a un berlan 
+		 
+		int total= 0;  
+		 
+		for (int i = 0; i < tabOccurrence.length; i++) { 
+			if(tabOccurrence[i]>=3) { 
+				total = 3*i; 
+			}	 
+		} 
+ 
+		return total; 
+	}
+	public static int surplus(int [] tab) { 
+		 
+		int total= 0;  
+		 
+		for (int i = 0; i < tab.length; i++) { 
+			total += tab[i];	 
+		} 
+ 
+		return total; 
+	}
+	public static void RemplirTabOccurrence(int [] tabDes, int []tabOccurrence) { 
+		for(int i=0;i<tabDes.length;i++){ 
+			tabOccurrence[tabDes[i]]++;//Ajouter au tableau le nombre d'occurence d'un dÈs en utilisant la position dans le tableau qui lui correspond 
+		} 
 	}
 	
 }
