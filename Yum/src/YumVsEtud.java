@@ -39,68 +39,63 @@ public class YumVsEtud {
 	// Les constantes sont défines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
-	  public static int[] Grillepossibilite = new int[Constantes.NB_CASES];
-	  public static int  CompteurTour = 1;
-	  public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des 
-	  public static int[] ArrayDice = new int[Constantes.NB_DES]; //creation des 5 des. 
-	  public static int[] ArrayPoint = new int[Constantes.NB_CASES];
+	 public static int[] grillePossibilite = new int[25];
+	 public static int  compteurTour = 1;
+	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des des 
+	  public static int[] arrayDice = new int[5]; //creation des 5 des. 
+	  public static int[] arrayPoint = new int[19];
 	 
-	// Permet la saisie de donné au clavier en mode console.
+	// Permet la saisie de donn�es au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
+	/* Traduisez ici l'algorithme du programme principal*/
 		
-		   InitialisePointGrille(ArrayPoint);
-           ModAffichage.afficherGrille(ArrayPoint);
-		   InitialShuflle(ArrayDice); //
-		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
-		   RemplirTabOccurrence(ArrayDice,tabOccurrence); 
-		   Additiondelespoints(ArrayDice,Grillepossibilite);
-		   CheckCondition();
-		   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
+		   initialisePointGrille(arrayPoint);
+           ModAffichage.afficherGrille(arrayPoint);
+		   initialShuflle(arrayDice);
+		   ModAffichage.afficherDes(arrayDice);
+		   remplirTabOccurrence(arrayDice,tabOccurrence); 
+		   additionDesPoints(arrayDice);
+
+		   checkCondition();
+		   ModAffichage.afficherGrillePossibilite(grillePossibilite);
 		   
 		   
-		   while(CompteurTour< Constantes.NB_ESSAIS) 
+		   while(compteurTour< Constantes.NB_ESSAIS) 
 		  		 {
-		  			 String Input = InputDesARouler();
+		  			 String Input = inputDesARouler();
 		  			 int intdice = Integer.parseInt(Input);  //Convertion du string en integer
 		  			 
 		  			 if(intdice<=0) 
 		  			 {
 		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
-		  				 ModAffichage.afficherDes(ArrayDice);
-		  				 
-		  				 
-		  				 Additiondelespoints(ArrayDice,Grillepossibilite);
-		  				 CheckCondition();
-		  				 ModAffichage.afficherGrillePossibilite(Grillepossibilite);
-		  				 CompteurTour=Constantes.NB_ESSAIS;
-		  				 System.out.print("COMPTEUR EST A  : " + CompteurTour + "\n" );
+		  				 ModAffichage.afficherDes(arrayDice);
+		  				 additionDesPoints(arrayDice);
+		  				 checkCondition();
+		  				 ModAffichage.afficherGrillePossibilite(grillePossibilite);
+		  				 compteurTour=Constantes.NB_ESSAIS;
+		  				 System.out.print("COMPTEUR EST A  : " + compteurTour + "\n" );
 		  			 }
 		  			 
   
 		  			  else if(intdice>0)
 		  			  {
-		  				   System.out.print("Nouvelle main de dées :  \n" );
-		  				   ReshuffleDice(ArrayDice,Input);
-		  				   
-		  				   ModAffichage.afficherDes(ArrayDice);
-		  				   Additiondelespoints(ArrayDice,Grillepossibilite);
-		  				   CheckCondition();
-		  				   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
-		  				   CompteurTour++;
-		  				   System.out.print("COMPTEUR EST A  : " + CompteurTour + "\n" );
+		  				   System.out.print("Nouvelle main de d�es :  \n" );
+		  				   reshuffleDice(arrayDice,Input);
+		  				   ModAffichage.afficherDes(arrayDice);
+		  				   additionDesPoints(arrayDice);
+		  				   checkCondition();
+		  				   ModAffichage.afficherGrillePossibilite(grillePossibilite);
+		  				   compteurTour++;
+		  				   System.out.print("COMPTEUR EST A  : " + compteurTour + "\n" );
 		  				   
 		  			  }
 		  			 
 		  		 }
-           AjoutPointGrille(ArrayPoint,45);
-           ModAffichage.afficherGrille(ArrayPoint);
- 
-	    /* Traduisez ici l'algorithme du programme principal
-	    
-	     */
+           ajoutPointGrille(arrayPoint,45);
+           ModAffichage.afficherGrille(arrayPoint);
 		   
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
 
@@ -115,7 +110,7 @@ public class YumVsEtud {
 	fonction imcomplet pour rajouter les points dans la grille principale
 	*/
 
-	public static int[] InitialisePointGrille(int[] array) {
+	public static int[] initialisePointGrille(int[] array) {
 		
 		for(int i = 0 ; i < array.length ; i++) {
 			array[i] = -1;
@@ -128,7 +123,7 @@ public class YumVsEtud {
 		return array;
 	}
 	
-	public static int[] AjoutPointGrille(int[] array, int point) {
+	public static int[] ajoutPointGrille(int[] array, int point) {
 		
 		
 		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum");
@@ -182,13 +177,13 @@ public class YumVsEtud {
 	}
 	
 	
-	public static int[] InitialShuflle(int[] array) //fonction qui permet de donner 5 des different
+	public static int[] initialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
 	    Random random = new Random();
 	    
 	    for (int i = 0; i < array.length; i++) 
 	    {
-	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
+	        array[i] = random.nextInt(Constantes.NB_DES - Constantes.DES_MIN) + Constantes.DES_MIN;
 	        
 	    }
 	 
@@ -197,22 +192,28 @@ public class YumVsEtud {
 			
 	
 	
-	public static int[] ReshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
+	public static int[] reshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
 		
 		 Random random = new Random();
 		 for(char c : Index.toCharArray()) 
 		 {
 			      int a=Integer.parseInt(String.valueOf(c));//Convert char to int 
-			      arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
+			      arrayParam[a-1] = random.nextInt(Constantes.NB_DES - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
 		 }
 		 
 		 return arrayParam;
 	} 
 	
-	public static boolean mainPleine(int [] tabOccurrence) {//Trouve si il y a une main pleine 
-		 
-		boolean mainPleine = false;	 
+	/*	Trouver une main pleine dans un tableau re�u en param�tre et 
+	 * 	mettre les donn�es dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverMainPleine(int [] tabOccurrence) { 
+		 	 
 		int identique2 = 0; 
 		int identique3 = 0; 
 		 
@@ -226,14 +227,19 @@ public class YumVsEtud {
 		} 
 		 
 		if(identique3 != 0 && identique2 != 0) { 
-			mainPleine = true; 
-		} 
+			grillePossibilite[Constantes.MAIN_PLEINE] = 25; 
+		}  
+	}
+	
+	/*	Trouver une longue s�quence dans un tableau re�u en param�tre et 
+	 * 	mettre les donn�es dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverLongueSequence(int [] tabOccurrence) { 
  
-		return mainPleine; 
-	} 
-	public static boolean longueSequence(int [] tabOccurrence) {//Trouve si il y a une longue sequence 
- 
-		boolean longueSequence = false;	 
 		int compteur = 0; 
 		 
 		for (int i = 0; i < tabOccurrence.length; i++) { 
@@ -244,16 +250,21 @@ public class YumVsEtud {
 		 
 		if(compteur==5) { 
 			if(tabOccurrence[1] == 0 || tabOccurrence[6] == 0) { 
-				longueSequence = true; 
+				grillePossibilite[Constantes.GROSSE_SUITE] = 20; 
 			} 
 			 
-		} 
- 
-		return longueSequence; 
-	} 
-	public static boolean courteSequence(int [] tabOccurrence) {//Trouve si il y a une courte sequence 
- 
-		boolean courtSequence = false;	 
+		}  
+	}
+	
+	/*	Trouver une courte s�quence dans un tableau re�u en param�tre et 
+	 * 	mettre les donn�es dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverCourteSequence(int [] tabOccurrence) {
+ 	 
 		int compteur = 0; 
 		 
 		for (int i = 0; i < tabOccurrence.length; i++) { 
@@ -264,27 +275,35 @@ public class YumVsEtud {
 		 
 		if(compteur==4) { 
 			if(tabOccurrence[1] == 0 || tabOccurrence[6] == 0 || tabOccurrence[5] == 0 || tabOccurrence[2] == 0) { 
-				courtSequence = true; 
+				grillePossibilite[Constantes.PETITE_SUITE] = 15; 
 			} 
-		} 
- 
-		return courtSequence; 
+		}  
 	}
 	
-	public static boolean yum(int [] tabOccurrence) {//Trouve si il y a un yum 
-		 
-		boolean yum = false;	  
+	/*	Trouver le yum dans un tableau re�u en param�tre et 
+	 * 	mettre les donn�es dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverYum(int [] tabOccurrence) { 
 		 
 		for (int i = 0; i < tabOccurrence.length; i++) { 
 			if(tabOccurrence[i]==5) { 
-				yum = true; 
+				grillePossibilite[Constantes.YUM] = 30; 
 			}	 
 		} 
- 
-		return yum; 
 	}
 	
-	public static int carre(int [] tabOccurrence) {//Trouve si il y a un carre 
+	/*	Trouver un carr� dans un tableau re�u en param�tre et 
+	 * 	mettre le total dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverCarre(int [] tabOccurrence) { 
 		 
 		int total= 0;  
 		 
@@ -293,15 +312,18 @@ public class YumVsEtud {
 				total = 4*i; 
 				
 			}	 
-		} 
-		
-		 Grillepossibilite[Constantes.CARRE] = total;
-		
- 
-		return total; 
+		} 		
+		grillePossibilite[Constantes.CARRE] = total;
 	}
-	public static int berlan(int [] tabOccurrence) 
-	{//Trouve si il y a un berlan 
+	
+	/*	Trouver un brelan dans un tableau re�u en param�tre et 
+	 * 	mettre le total dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverBerlan(int [] tabOccurrence) { 
 		 
 		int total= 0;  
 		 
@@ -310,31 +332,45 @@ public class YumVsEtud {
 				total = 3*i; 
 			}	 
 		} 
-		   Grillepossibilite[Constantes.BRELAN] = total;
-		return total; 
+		grillePossibilite[Constantes.BRELAN] = total; 
 	}
 	
-	public static int surplus(int [] tab) 
+	/*	Trouver le surplus dans un tableau re�u en param�tre et 
+	 * 	mettre le total dans la grille de possibilit�s.
+	 * 
+	 *  @param tabOccurrence : un tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void trouverSurplus(int [] tab) 
 	{ 
-		 
 		int total= 0;  
 		 
 		for (int i = 0; i < tab.length; i++) { 
 			total += tab[i];	 
 		} 
  
-		 Grillepossibilite[Constantes.SURPLUS] = total;
-		return total; 
+		grillePossibilite[Constantes.SURPLUS] = total;
 	}
-	public static void RemplirTabOccurrence(int [] tabDes, int []tabOccurrence) 
+	
+	/*	Remplir un nouveau tableau avec le nombre d'occurrences de chaque d� � chaque position qui lui correspond
+	 *  avec les donn�es du tableau des d�s initial. Par exemple, si mes d�s sont {1,2,3,5,5} 
+	 *  mon nouveau tableau sera : {0,1,1,1,0,2,0}  
+	 * 
+	 *  @param tabDes : un tableau
+	 *  @param tabOccurrence : un nouveau tableau
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void remplirTabOccurrence(int [] tabDes, int []tabOccurrence) 
 	{ 
 		for(int i=0;i<tabDes.length;i++){ 
-			tabOccurrence[tabDes[i]]++;//Ajouter au tableau le nombre d'occurence d'un des en utilisant la position dans le tableau qui lui correspond 
+			tabOccurrence[tabDes[i]]++;
 		} 
 	}
 	
 
-	public static String InputDesARouler() 
+	public static String inputDesARouler() 
 	{
 		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dés " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
@@ -404,41 +440,19 @@ public class YumVsEtud {
 		
 	}
 	
-	
-	public static void CheckCondition() 
-	{
-		
-		if(mainPleine(tabOccurrence)) 
-		   { 
-			   Grillepossibilite[Constantes.MAIN_PLEINE] = 25;
-			   
-		   } 
-		    
-		   if(courteSequence(tabOccurrence)) { 
-
-			   Grillepossibilite[Constantes.PETITE_SUITE] = 15;
-			   
-		   } 
-		    
-		   if(longueSequence(tabOccurrence)) { 
-			  
-			   Grillepossibilite[Constantes.GROSSE_SUITE] = 20;
-			   
-		   }
-		   
-		   if(yum(tabOccurrence)) { 
-
-			   Grillepossibilite[Constantes.YUM] = 30;
- 
-		   }
- 
-		   carre(tabOccurrence);
-
-		   berlan(tabOccurrence);
-		   
-		   surplus(ArrayDice);
-
-		   
+	/*	Appel des fonctions de v�rification des combinaisons possibles.
+	 *  
+	 *  Auteur: Antoine Bolduc
+	 */
+	public static void checkCondition() 
+	{ 
+		   trouverMainPleine(tabOccurrence);
+		   trouverCourteSequence(tabOccurrence);
+		   trouverLongueSequence(tabOccurrence);
+		   trouverYum(tabOccurrence);		   
+		   trouverCarre(tabOccurrence);
+		   trouverBerlan(tabOccurrence);	   
+		   trouverSurplus(arrayDice);	   
 	}
 
 }
