@@ -44,6 +44,8 @@ public class YumVsEtud {
 	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des des 
 	  public static int[] arrayDice = new int[5]; //creation des 5 des. 
 	  public static int[] arrayPoint = new int[19];
+	  
+	public static final int DES_MAX = 7;
 	 
 	// Permet la saisie de données au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
@@ -184,7 +186,7 @@ public class YumVsEtud {
 	    
 	    for (int i = 0; i < array.length; i++) 
 	    {
-	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
+	        array[i] = random.nextInt(DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
 	        
 	    }
 	 
@@ -200,7 +202,7 @@ public class YumVsEtud {
 		 for(char c : Index.toCharArray()) 
 		 {
 			      int a=Integer.parseInt(String.valueOf(c));//Convert char to int 
-			      arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
+			      arrayParam[a-1] = random.nextInt(DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
 		 }
 		 
 		 return arrayParam;
