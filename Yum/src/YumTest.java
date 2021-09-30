@@ -40,6 +40,14 @@ class YumTest {
 	}
 	
 
+	@Test void test_Inputdes() 
+	{
+		
+		 String Input = "123"; 
+		 assertEquals(Input,YumVsEtud.InputDesARouler());
+
+	}
+	
 	
 	
 	
