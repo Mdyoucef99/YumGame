@@ -37,11 +37,11 @@ public class YumVsEtud {
 	// Les constantes sont dï¿½fines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
-	 public static int[] Grillepossibilite = new int[25];
-	 public static int  CompteurTour = 1;
-	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des 
-	  public static int[] ArrayDice = new int[5]; //creation des 5 des. 
-	  public static int[] ArrayPoint = new int[19];
+	  public static int[] Grillepossibilite = new int[Constantes.NB_CASES];
+	  public static int  CompteurTour = 1;
+	  public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des 
+	  public static int[] ArrayDice = new int[Constantes.NB_DES]; //creation des 5 des. 
+	  public static int[] ArrayPoint = new int[Constantes.NB_CASES];
 	 
 	// Permet la saisie de donnï¿½ au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
@@ -54,8 +54,7 @@ public class YumVsEtud {
 		   InitialShuflle(ArrayDice); //
 		   ModAffichage.afficherDes(ArrayDice);//affichage des dï¿½s 
 		   RemplirTabOccurrence(ArrayDice,tabOccurrence); 
-		   Additiondelespoints(ArrayDice);
-
+		   Additiondelespoints(ArrayDice,Grillepossibilite);
 		   CheckCondition();
 		   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		   
@@ -69,7 +68,9 @@ public class YumVsEtud {
 		  			 {
 		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
 		  				 ModAffichage.afficherDes(ArrayDice);
-		  				 Additiondelespoints(ArrayDice);
+		  				 
+		  				 
+		  				 Additiondelespoints(ArrayDice,Grillepossibilite);
 		  				 CheckCondition();
 		  				 ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		  				 CompteurTour=Constantes.NB_ESSAIS;
@@ -79,10 +80,11 @@ public class YumVsEtud {
   
 		  			  else if(intdice>0)
 		  			  {
-		  				   System.out.print("Nouvelle main de dées :  \n" );
+		  				   System.out.print("Nouvelle main de dï¿½es :  \n" );
 		  				   ReshuffleDice(ArrayDice,Input);
+		  				   
 		  				   ModAffichage.afficherDes(ArrayDice);
-		  				   Additiondelespoints(ArrayDice);
+		  				   Additiondelespoints(ArrayDice,Grillepossibilite);
 		  				   CheckCondition();
 		  				   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		  				   CompteurTour++;
@@ -266,6 +268,7 @@ public class YumVsEtud {
  
 		return courtSequence; 
 	}
+	
 	public static boolean yum(int [] tabOccurrence) {//Trouve si il y a un yum 
 		 
 		boolean yum = false;	  
@@ -331,14 +334,14 @@ public class YumVsEtud {
 
 	public static String InputDesARouler() 
 	{
-		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dï¿½s- " );
+		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dï¿½s " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   return NumberChangeOfDice;
 		
 	}
 	
 
-	public static void Additiondelespoints(int[] tab) 
+	public static int[] Additiondelespoints(int[] tab,int[] grille) 
 	{
 		
 		int a = 0;
@@ -347,7 +350,6 @@ public class YumVsEtud {
 		int d = 0;
 		int e = 0;
 		int f = 0;
-				
 		
 		for(int i=0;i<tab.length;i++) 
 		{
@@ -389,12 +391,14 @@ public class YumVsEtud {
 			
 		}	
 		
-		  Grillepossibilite[1]= a;
-		  Grillepossibilite[2]= b;
-		  Grillepossibilite[3]= c;
-		  Grillepossibilite[4]= d;
-		  Grillepossibilite[5]= e;
-		  Grillepossibilite[6]= f;
+		grille[1]= a;
+		grille[2]= b;
+		grille[3]= c;
+		grille[4]= d;
+		grille[5]= e;
+		grille[6]= f;
+		
+		return grille;
 		
 	}
 	
@@ -425,8 +429,7 @@ public class YumVsEtud {
 			   Grillepossibilite[Constantes.YUM] = 30;
  
 		   }
-		   
-		   
+ 
 		   carre(tabOccurrence);
 
 		   berlan(tabOccurrence);
