@@ -57,7 +57,7 @@ public class YumVsEtud {
 		   InitialShuflle(ArrayDice); //
 		   ModAffichage.afficherDes(ArrayDice);//affichage des dï¿½s 
 		   RemplirTabOccurrence(ArrayDice,tabOccurrence); 
-		   Additiondelespoints(ArrayDice);
+		   Additiondelespoints(ArrayDice,Grillepossibilite);
 		   CheckCondition();
 		   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		   
@@ -71,7 +71,9 @@ public class YumVsEtud {
 		  			 {
 		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
 		  				 ModAffichage.afficherDes(ArrayDice);
-		  				 Additiondelespoints(ArrayDice);
+		  				 
+		  				 
+		  				 Additiondelespoints(ArrayDice,Grillepossibilite);
 		  				 CheckCondition();
 		  				 ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		  				 CompteurTour=Constantes.NB_ESSAIS;
@@ -83,8 +85,9 @@ public class YumVsEtud {
 		  			  {
 		  				   System.out.print("Nouvelle main de dées :  \n" );
 		  				   ReshuffleDice(ArrayDice,Input);
+		  				   
 		  				   ModAffichage.afficherDes(ArrayDice);
-		  				   Additiondelespoints(ArrayDice);
+		  				   Additiondelespoints(ArrayDice,Grillepossibilite);
 		  				   CheckCondition();
 		  				   ModAffichage.afficherGrillePossibilite(Grillepossibilite);
 		  				   CompteurTour++;
@@ -317,14 +320,14 @@ public class YumVsEtud {
 
 	public static String InputDesARouler() 
 	{
-		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dï¿½s- " );
+		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dés " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   return NumberChangeOfDice;
 		
 	}
 	
 
-	public static void Additiondelespoints(int[] tab) 
+	public static int[] Additiondelespoints(int[] tab,int[] grille) 
 	{
 		
 		int a = 0;
@@ -333,7 +336,6 @@ public class YumVsEtud {
 		int d = 0;
 		int e = 0;
 		int f = 0;
-				
 		
 		for(int i=0;i<tab.length;i++) 
 		{
@@ -375,12 +377,14 @@ public class YumVsEtud {
 			
 		}	
 		
-		  Grillepossibilite[1]= a;
-		  Grillepossibilite[2]= b;
-		  Grillepossibilite[3]= c;
-		  Grillepossibilite[4]= d;
-		  Grillepossibilite[5]= e;
-		  Grillepossibilite[6]= f;
+		grille[1]= a;
+		grille[2]= b;
+		grille[3]= c;
+		grille[4]= d;
+		grille[5]= e;
+		grille[6]= f;
+		
+		return grille;
 		
 	}
 	
