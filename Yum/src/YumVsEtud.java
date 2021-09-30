@@ -255,6 +255,7 @@ public class YumVsEtud {
  
 		return courtSequence; 
 	}
+	
 	public static boolean yum(int [] tabOccurrence) {//Trouve si il y a un yum 
 		 
 		boolean yum = false;	  
