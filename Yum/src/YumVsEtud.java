@@ -45,7 +45,7 @@ public class YumVsEtud {
 	  public static int[] arrayDice = new int[5]; //creation des 5 des. 
 	  public static int[] arrayPoint = new int[19];
 	 
-	// Permet la saisie de donn�es au clavier en mode console.
+	// Permet la saisie de données au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
@@ -57,7 +57,7 @@ public class YumVsEtud {
 		   initialShuflle(arrayDice);
 		   ModAffichage.afficherDes(arrayDice);
 		   remplirTabOccurrence(arrayDice,tabOccurrence); 
-		   additionDesPoints(arrayDice);
+		   additionDesPoints(arrayDice,grillePossibilite);
 
 		   checkCondition();
 		   ModAffichage.afficherGrillePossibilite(grillePossibilite);
@@ -72,7 +72,7 @@ public class YumVsEtud {
 		  			 {
 		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
 		  				 ModAffichage.afficherDes(arrayDice);
-		  				 additionDesPoints(arrayDice);
+		  				 additionDesPoints(arrayDice,grillePossibilite);
 		  				 checkCondition();
 		  				 ModAffichage.afficherGrillePossibilite(grillePossibilite);
 		  				 compteurTour=Constantes.NB_ESSAIS;
@@ -82,10 +82,10 @@ public class YumVsEtud {
   
 		  			  else if(intdice>0)
 		  			  {
-		  				   System.out.print("Nouvelle main de d�es :  \n" );
+		  				   System.out.print("Nouvelle main de dées :  \n" );
 		  				   reshuffleDice(arrayDice,Input);
 		  				   ModAffichage.afficherDes(arrayDice);
-		  				   additionDesPoints(arrayDice);
+		  				   additionDesPoints(arrayDice,grillePossibilite);
 		  				   checkCondition();
 		  				   ModAffichage.afficherGrillePossibilite(grillePossibilite);
 		  				   compteurTour++;
@@ -103,7 +103,7 @@ public class YumVsEtud {
 	
 	
 	/*
-	 * Ã‰crivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
+	 *écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
 	
 	/*
@@ -122,6 +122,7 @@ public class YumVsEtud {
 		array[Constantes.GRAND_TOTAL] = 0;
 		return array;
 	}
+	
 	
 	public static int[] ajoutPointGrille(int[] array, int point) {
 		
@@ -205,8 +206,8 @@ public class YumVsEtud {
 		 return arrayParam;
 	} 
 	
-	/*	Trouver une main pleine dans un tableau re�u en param�tre et 
-	 * 	mettre les donn�es dans la grille de possibilit�s.
+	/*	Trouver une main pleine dans un tableau  en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -231,8 +232,8 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver une longue s�quence dans un tableau re�u en param�tre et 
-	 * 	mettre les donn�es dans la grille de possibilit�s.
+	/*	Trouver une longue séquence dans un tableau en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -256,8 +257,8 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver une courte s�quence dans un tableau re�u en param�tre et 
-	 * 	mettre les donn�es dans la grille de possibilit�s.
+	/*	Trouver une courte séquence dans un tableau  en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -280,8 +281,8 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver le yum dans un tableau re�u en param�tre et 
-	 * 	mettre les donn�es dans la grille de possibilit�s.
+	/*	Trouver le yum dans un tableau en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -296,8 +297,8 @@ public class YumVsEtud {
 		} 
 	}
 	
-	/*	Trouver un carr� dans un tableau re�u en param�tre et 
-	 * 	mettre le total dans la grille de possibilit�s.
+	/*	Trouver un carré dans un tableau  en paramétre et 
+	 * 	mettre le total dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -316,8 +317,8 @@ public class YumVsEtud {
 		grillePossibilite[Constantes.CARRE] = total;
 	}
 	
-	/*	Trouver un brelan dans un tableau re�u en param�tre et 
-	 * 	mettre le total dans la grille de possibilit�s.
+	/*	Trouver un brelan dans un tableau en paramétre et 
+	 * 	mettre le total dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -335,8 +336,8 @@ public class YumVsEtud {
 		grillePossibilite[Constantes.BRELAN] = total; 
 	}
 	
-	/*	Trouver le surplus dans un tableau re�u en param�tre et 
-	 * 	mettre le total dans la grille de possibilit�s.
+	/*	Trouver le surplus dans un tableau  en paramétre et 
+	 * 	mettre le total dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -353,8 +354,8 @@ public class YumVsEtud {
 		grillePossibilite[Constantes.SURPLUS] = total;
 	}
 	
-	/*	Remplir un nouveau tableau avec le nombre d'occurrences de chaque d� � chaque position qui lui correspond
-	 *  avec les donn�es du tableau des d�s initial. Par exemple, si mes d�s sont {1,2,3,5,5} 
+	/*	Remplir un nouveau tableau avec le nombre d'occurrences de chaque dés chaque position qui lui correspond
+	 *  avec les données du tableau des dés initial. Par exemple, si mes dés sont {1,2,3,5,5} 
 	 *  mon nouveau tableau sera : {0,1,1,1,0,2,0}  
 	 * 
 	 *  @param tabDes : un tableau
@@ -379,7 +380,7 @@ public class YumVsEtud {
 	}
 	
 
-	public static int[] Additiondelespoints(int[] tab,int[] grille) 
+	public static int[] additionDesPoints(int[] tab,int[] grille) 
 	{
 		
 		int a = 0;
@@ -440,7 +441,7 @@ public class YumVsEtud {
 		
 	}
 	
-	/*	Appel des fonctions de v�rification des combinaisons possibles.
+	/*	Appel des fonctions de vérification des combinaisons possibles.
 	 *  
 	 *  Auteur: Antoine Bolduc
 	 */
