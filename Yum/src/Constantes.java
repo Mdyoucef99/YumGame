@@ -1,13 +1,13 @@
 package src;
 /*
- * Contient les déclarations des constantes utilisées
- * dans le cadre de l'implémentation INF111A21
+ * Contient les dï¿½clarations des constantes utilisï¿½es
+ * dans le cadre de l'implï¿½mentation INF111A21
  * 
  * 
- * Si vous ajoutez des constantes, faites-le dans le même fichier que
- * votre main().  Ne touchez pas à ce module.
+ * Si vous ajoutez des constantes, faites-le dans le mï¿½me fichier que
+ * votre main().  Ne touchez pas ï¿½ ce module.
  * 
- * Auteur: Pierre Bélisle
+ * Auteur: Pierre Bï¿½lisle
  * Version : Copyright A2021
  */
 public class Constantes {
@@ -19,11 +19,9 @@ public class Constantes {
 	public static final int NB_TOURS = 13;
 	public static final int NB_ESSAIS = 3;
 	public static final int DES_MIN = 1;
-	public static final int DES_MAX = 7;
-	
 	public static final int NB_FACES = 6;
 
-	// Les numéros de case du bonus.
+	// Les numï¿½ros de case du bonus.
 	public static final int SOUS_TOTAL_HAUT = 7;
 	public static final int BONUS_DU_HAUT = 8;
 	public static final int TOTAL_HAUT = 9;
@@ -34,11 +32,11 @@ public class Constantes {
 	public static final int MIN_BONUS = 63;
 	public static final int POINT_BONUS_HAUT = 25;
 
-	// Les numéros de case des suites.
+	// Les numï¿½ros de case des suites.
 	public static final int PETITE = 4;
 	public static final int GROSSE = 5;
 
-	// Les numéros des autres cas de la grille de possibilités.
+	// Les numï¿½ros des autres cas de la grille de possibilitï¿½s.
 	public static final int BRELAN = 10;
 	public static final int CARRE = 11;
 	public static final int MAIN_PLEINE  = 12;
