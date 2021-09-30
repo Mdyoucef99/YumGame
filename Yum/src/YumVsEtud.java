@@ -184,7 +184,7 @@ public class YumVsEtud {
 	    
 	    for (int i = 0; i < array.length; i++) 
 	    {
-	        array[i] = random.nextInt(Constantes.NB_DES - Constantes.DES_MIN) + Constantes.DES_MIN;
+	        array[i] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN;
 	        
 	    }
 	 
@@ -200,7 +200,7 @@ public class YumVsEtud {
 		 for(char c : Index.toCharArray()) 
 		 {
 			      int a=Integer.parseInt(String.valueOf(c));//Convert char to int 
-			      arrayParam[a-1] = random.nextInt(Constantes.NB_DES - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
+			      arrayParam[a-1] = random.nextInt(Constantes.DES_MAX - Constantes.DES_MIN) + Constantes.DES_MIN; //reshuffle les des a la position demander 	  
 		 }
 		 
 		 return arrayParam;
