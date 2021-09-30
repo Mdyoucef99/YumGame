@@ -1,22 +1,24 @@
+package src;
+
 import java.util.Random;
 import java.util.Scanner;
 
 
 /*
- ** Programme principal qui d�marre le jeu de YUM pour un seul joueur. 
+ ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
  *  
- * Une s�rie de 5 d�s est g�n�r� al�atoirement et le joueur a droit 
- * a changer les d�s qu'il d�sire � deux reprises � moins qu'il les 
+ * Une série de 5 dés est généré aléatoirement et le joueur a droit 
+ * a changer les dés qu'il désire é éeux reprises  moins qu'il les 
  * garde tous. 
  *  
- * Par la suite, le programme offre toutes les possibilit�s de points  
- * pouvant �tre jou�s et le joueur d�cide quel est son choix parmi  
- * ces possibilit�s. 
+ * Par la suite, le programme offre toutes les possibilités de points  
+ * pouvant étre joués et le joueur décide quel est son choix parmi  
+ * ces possibilités. 
  *  
- * Dans le cadre du cours inf111 (voir �nnonc� fourni). 
+ * Dans le cadre du cours inf111 (voir énnoncé fourni). 
  *  
  * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment  
- *          contribu� en �criture de code et de commentaires. 
+ *          contribué en écriture de code et de commentaires. 
  *           
  *          
  * Auteur : Youcef mekki daouadji
@@ -26,7 +28,7 @@ import java.util.Scanner;
  * Auteur :
  * 
  * 
- * Auteur : Pierre B�lisle 
+ * Auteur : Pierre Bélisle 
  *          
  * Version : Copyright A2021
  */
@@ -34,7 +36,7 @@ import java.util.Scanner;
 public class YumVsEtud {
 
 	
-	// Les constantes sont d�fines dans le module Constantes.java
+	// Les constantes sont défines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
 	  public static int[] Grillepossibilite = new int[Constantes.NB_CASES];
@@ -43,7 +45,7 @@ public class YumVsEtud {
 	  public static int[] ArrayDice = new int[Constantes.NB_DES]; //creation des 5 des. 
 	  public static int[] ArrayPoint = new int[Constantes.NB_CASES];
 	 
-	// Permet la saisie de donn� au clavier en mode console.
+	// Permet la saisie de donné au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
@@ -52,7 +54,7 @@ public class YumVsEtud {
 		   InitialisePointGrille(ArrayPoint);
            ModAffichage.afficherGrille(ArrayPoint);
 		   InitialShuflle(ArrayDice); //
-		   ModAffichage.afficherDes(ArrayDice);//affichage des d�s 
+		   ModAffichage.afficherDes(ArrayDice);//affichage des dés 
 		   RemplirTabOccurrence(ArrayDice,tabOccurrence); 
 		   Additiondelespoints(ArrayDice,Grillepossibilite);
 		   CheckCondition();
@@ -80,7 +82,7 @@ public class YumVsEtud {
   
 		  			  else if(intdice>0)
 		  			  {
-		  				   System.out.print("Nouvelle main de d�es :  \n" );
+		  				   System.out.print("Nouvelle main de dées :  \n" );
 		  				   ReshuffleDice(ArrayDice,Input);
 		  				   
 		  				   ModAffichage.afficherDes(ArrayDice);
@@ -334,7 +336,7 @@ public class YumVsEtud {
 
 	public static String InputDesARouler() 
 	{
-		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos d�s " );
+		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dés " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   return NumberChangeOfDice;
 		
