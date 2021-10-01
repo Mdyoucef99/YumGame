@@ -1,24 +1,22 @@
-package src;
-
 import java.util.Random;
 import java.util.Scanner;
 
 
 /*
- ** Programme principal qui dÃ©marre le jeu de YUM pour un seul joueur. 
+ ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
  *  
- * Une sÃ©rie de 5 dÃ©s est gÃ©nÃ©rÃ© alÃ©atoirement et le joueur a droit 
- * a changer les dÃ©s qu'il dÃ©sire Ã© Ã©eux reprises  moins qu'il les 
+ * Une série de 5 dés est généré aléatoirement et le joueur a droit 
+ * a changer les dés qu'il désire é éeux reprises  moins qu'il les 
  * garde tous. 
  *  
- * Par la suite, le programme offre toutes les possibilitÃ©s de points  
- * pouvant Ã©tre jouÃ©s et le joueur dÃ©cide quel est son choix parmi  
- * ces possibilitÃ©s. 
+ * Par la suite, le programme offre toutes les possibilités de points  
+ * pouvant étre joués et le joueur décide quel est son choix parmi  
+ * ces possibilités. 
  *  
- * Dans le cadre du cours inf111 (voir Ã©nnoncÃ© fourni). 
+ * Dans le cadre du cours inf111 (voir énnoncé fourni). 
  *  
  * Auteur : Mettez le nom de chaque membre du groupe qui a suffisamment  
- *          contribuÃ© en Ã©criture de code et de commentaires. 
+ *          contribué en écriture de code et de commentaires. 
  *           
  *          
  * Auteur : Youcef mekki daouadji
@@ -28,7 +26,7 @@ import java.util.Scanner;
  * Auteur :
  * 
  * 
- * Auteur : Pierre BÃ©lisle 
+ * Auteur : Pierre Bélisle 
  *          
  * Version : Copyright A2021
  */
@@ -36,7 +34,7 @@ import java.util.Scanner;
 public class YumVsEtud {
 
 	
-	// Les constantes sont dÃ©fines dans le module Constantes.java
+	// Les constantes sont défines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
 	 public static int[] grillePossibilite = new int[25];
@@ -47,15 +45,21 @@ public class YumVsEtud {
 	  
 	public static final int DES_MAX = 7;
 	 
-	// Permet la saisie de donnÃ©es au clavier en mode console.
+	// Permet la saisie de données au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
 	/* Traduisez ici l'algorithme du programme principal*/
 		
+		int point = 0;
 		   initialisePointGrille(arrayPoint);
            ModAffichage.afficherGrille(arrayPoint);
+           for(int i = 1 ; i < Constantes.NB_TOURS +1 ; i++) {
+        	   
+        	   System.out.printf("vous etes au tour %d",i);
+        	   System.out.println();
+        	   
 		   initialShuflle(arrayDice);
 		   ModAffichage.afficherDes(arrayDice);
 		   remplirTabOccurrence(arrayDice,tabOccurrence); 
@@ -64,6 +68,8 @@ public class YumVsEtud {
 		   checkCondition();
 		   ModAffichage.afficherGrillePossibilite(grillePossibilite);
 		   
+		   
+			   
 		   
 		   while(compteurTour< Constantes.NB_ESSAIS) 
 		  		 {
@@ -84,7 +90,7 @@ public class YumVsEtud {
   
 		  			  else if(intdice>0)
 		  			  {
-		  				   System.out.print("Nouvelle main de dÃ©es :  \n" );
+		  				   System.out.print("Nouvelle main de dées :  \n" );
 		  				   reshuffleDice(arrayDice,Input);
 		  				   ModAffichage.afficherDes(arrayDice);
 		  				   additionDesPoints(arrayDice,grillePossibilite);
@@ -96,21 +102,21 @@ public class YumVsEtud {
 		  			  }
 		  			 
 		  		 }
-           ajoutPointGrille(arrayPoint,45);
+		   compteurTour = 1;
+           ajoutPointGrille(arrayPoint, point);
            ModAffichage.afficherGrille(arrayPoint);
-		   
+           
+		   }
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
 
 	}
 	
 	
 	/*
-	 *Ã©crivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
+	 *écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
 	
-	/*
-	fonction imcomplet pour rajouter les points dans la grille principale
-	*/
+
 
 	public static int[] initialisePointGrille(int[] array) {
 		
@@ -124,7 +130,12 @@ public class YumVsEtud {
 		array[Constantes.GRAND_TOTAL] = 0;
 		return array;
 	}
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * Autour : Rada Leng
+	 */
 	
 	public static int[] ajoutPointGrille(int[] array, int point) {
 		
@@ -132,45 +143,75 @@ public class YumVsEtud {
 		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum");
 		int choix = clavier.nextInt();
 
+		int bonus = 0;
 		
 		if (choix == 1) {
-			array[1] =point;
+			array[1] = grillePossibilite[1];
+			point = grillePossibilite[1];
+
 		}
 		else if (choix == 2) {
-			array[2] = point;
+			array[2] = grillePossibilite[2];
+			point = grillePossibilite[2];
+
 		}
 		else if (choix == 3) {
-			array[3] = point;
+			
+			if(array[3] != -1) {
+			array[3] = grillePossibilite[3];
+			point = grillePossibilite[3];
+			}
+			else {
+				System.out.println("ce choix a deja ete choisi");
+			}
 		}
 		else if (choix == 4) {
-			array[4] = point;
+			array[4] = grillePossibilite[4];
+			point = grillePossibilite[4];
+
 		}
 		else if (choix == 5) {
-			array[5] = point;
+			array[5] = grillePossibilite[5];
+			point = grillePossibilite[5];
+
 		}
 		else if (choix == 6) {
-			array[6] = point;
+			array[6] = grillePossibilite[6];
+			point = grillePossibilite[6];
+
 		}
 		else if (choix == 10) {
-			array[Constantes.BRELAN] = point;
+			array[Constantes.BRELAN] = grillePossibilite[Constantes.BRELAN];
+			point = grillePossibilite[Constantes.BRELAN];
 		}
 		else if (choix == 11) {
-			array[Constantes.CARRE] = point;
+			array[Constantes.CARRE] = grillePossibilite[Constantes.CARRE];
+			point = grillePossibilite[Constantes.CARRE];
 		}
 		else if (choix == 12) {
-			array[Constantes.MAIN_PLEINE] = point;
+			array[Constantes.MAIN_PLEINE] = grillePossibilite[Constantes.MAIN_PLEINE];
+			point = grillePossibilite[Constantes.MAIN_PLEINE];
 		}
 		else if (choix == 13) {
-			array[Constantes.PETITE_SUITE] = point;
+			array[Constantes.PETITE_SUITE] = grillePossibilite[Constantes.PETITE_SUITE];
+			point = grillePossibilite[Constantes.PETITE_SUITE];
 		}
 		else if (choix == 14) {
-			array[Constantes.GROSSE_SUITE] = point;
+			array[Constantes.GROSSE_SUITE] = grillePossibilite[Constantes.GROSSE_SUITE];
+			point = grillePossibilite[Constantes.GROSSE_SUITE];
 		}
 		else if (choix == 15) {
-			array[Constantes.SURPLUS] = point;
+			array[Constantes.SURPLUS] = grillePossibilite[Constantes.SURPLUS];
+			point = grillePossibilite[Constantes.SURPLUS];
 		}
 		else if (choix == 16) {
-			array[Constantes.YUM] = point;
+			array[Constantes.YUM] = grillePossibilite[Constantes.YUM];
+			point = grillePossibilite[Constantes.YUM];
+		}
+		bonus = array[1] + array[2] + array[3] + array[4] +array[5] +array[6];
+		if(bonus >= Constantes.MIN_BONUS) {
+			array[Constantes.BONUS_DU_HAUT] = Constantes.POINT_BONUS_HAUT;
+			point += array[Constantes.BONUS_DU_HAUT];
 		}
 
 		array[Constantes.SOUS_TOTAL_HAUT] += point;
@@ -208,8 +249,8 @@ public class YumVsEtud {
 		 return arrayParam;
 	} 
 	
-	/*	Trouver une main pleine dans un tableau  en paramÃ©tre et 
-	 * 	mettre les donnÃ©es dans la grille de possibilitÃ©s.
+	/*	Trouver une main pleine dans un tableau  en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -234,8 +275,8 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver une longue sÃ©quence dans un tableau en paramÃ©tre et 
-	 * 	mettre les donnÃ©es dans la grille de possibilitÃ©s.
+	/*	Trouver une longue séquence dans un tableau en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -259,8 +300,8 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver une courte sÃ©quence dans un tableau  en paramÃ©tre et 
-	 * 	mettre les donnÃ©es dans la grille de possibilitÃ©s.
+	/*	Trouver une courte séquence dans un tableau  en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -283,8 +324,8 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver le yum dans un tableau en paramÃ©tre et 
-	 * 	mettre les donnÃ©es dans la grille de possibilitÃ©s.
+	/*	Trouver le yum dans un tableau en paramétre et 
+	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -299,8 +340,8 @@ public class YumVsEtud {
 		} 
 	}
 	
-	/*	Trouver un carrÃ© dans un tableau  en paramÃ©tre et 
-	 * 	mettre le total dans la grille de possibilitÃ©s.
+	/*	Trouver un carré dans un tableau  en paramétre et 
+	 * 	mettre le total dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -319,8 +360,8 @@ public class YumVsEtud {
 		grillePossibilite[Constantes.CARRE] = total;
 	}
 	
-	/*	Trouver un brelan dans un tableau en paramÃ©tre et 
-	 * 	mettre le total dans la grille de possibilitÃ©s.
+	/*	Trouver un brelan dans un tableau en paramétre et 
+	 * 	mettre le total dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -338,8 +379,8 @@ public class YumVsEtud {
 		grillePossibilite[Constantes.BRELAN] = total; 
 	}
 	
-	/*	Trouver le surplus dans un tableau  en paramÃ©tre et 
-	 * 	mettre le total dans la grille de possibilitÃ©s.
+	/*	Trouver le surplus dans un tableau  en paramétre et 
+	 * 	mettre le total dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
 	 *  
@@ -356,8 +397,8 @@ public class YumVsEtud {
 		grillePossibilite[Constantes.SURPLUS] = total;
 	}
 	
-	/*	Remplir un nouveau tableau avec le nombre d'occurrences de chaque dÃ©s chaque position qui lui correspond
-	 *  avec les donnÃ©es du tableau des dÃ©s initial. Par exemple, si mes dÃ©s sont {1,2,3,5,5} 
+	/*	Remplir un nouveau tableau avec le nombre d'occurrences de chaque dés chaque position qui lui correspond
+	 *  avec les données du tableau des dés initial. Par exemple, si mes dés sont {1,2,3,5,5} 
 	 *  mon nouveau tableau sera : {0,1,1,1,0,2,0}  
 	 * 
 	 *  @param tabDes : un tableau
@@ -375,7 +416,7 @@ public class YumVsEtud {
 
 	public static String inputDesARouler() 
 	{
-		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dÃ©s " );
+		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dés " );
 		   String NumberChangeOfDice = clavier.nextLine();//Input le string qui represent les des a changer 
 		   return NumberChangeOfDice;
 		
@@ -443,7 +484,7 @@ public class YumVsEtud {
 		
 	}
 	
-	/*	Appel des fonctions de vÃ©rification des combinaisons possibles.
+	/*	Appel des fonctions de vérification des combinaisons possibles.
 	 *  
 	 *  Auteur: Antoine Bolduc
 	 */
