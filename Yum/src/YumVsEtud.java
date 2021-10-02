@@ -1,3 +1,4 @@
+package src;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -47,6 +48,7 @@ public class YumVsEtud {
 	 
 	// Permet la saisie de données au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
+	public static Scanner clavier2 = new Scanner(System.in);
 
 	public static void main(String[] args){
 		
@@ -140,8 +142,8 @@ public class YumVsEtud {
 	public static int[] ajoutPointGrille(int[] array, int point) {
 		
 		
-		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum");
-		int choix = clavier.nextInt();
+		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum : ");
+		int choix = clavier2.nextInt();
 
 		int bonus = 0;
 		
