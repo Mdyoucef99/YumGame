@@ -2,7 +2,6 @@ package src;
 import java.util.Random;
 import java.util.Scanner;
 
-
 /*
  ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
  *  
@@ -41,43 +40,36 @@ public class YumVsEtud {
 	 public static int[] grillePossibilite = new int[25];
 	 public static int  compteurTour = 1;
 	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des des 
-	  public static int[] arrayDice = new int[5]; //creation des 5 des. 
-	  public static int[] arrayPoint = new int[19];
-	  
+	 public static int[] arrayDice = new int[5]; //creation des 5 des. 
+	 public static int[] arrayPoint = new int[19];
+	 public static int point = 0;
 	public static final int DES_MAX = 7;
 	 
 	// Permet la saisie de données au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
 	public static Scanner clavier2 = new Scanner(System.in);
 
-	public static void main(String[] args){
+	public static void main(String[] args)  {
 		
 	/* Traduisez ici l'algorithme du programme principal*/
-		
-		int point = 0;
+		   
 		   initialisePointGrille(arrayPoint);
-           ModAffichage.afficherGrille(arrayPoint);
            for(int i = 1 ; i < Constantes.NB_TOURS +1 ; i++) {
-        	   
-        	   System.out.printf("vous etes au tour %d",i);
-        	   System.out.println();
-        	   
+
+        	ModAffichage.afficherGrille(arrayPoint);
+        	System.out.printf("vous etes au tour %d",i);
+           System.out.println(); 
 		   initialShuflle(arrayDice);
 		   ModAffichage.afficherDes(arrayDice);
 		   remplirTabOccurrence(arrayDice,tabOccurrence); 
 		   additionDesPoints(arrayDice,grillePossibilite);
-
 		   checkCondition();
-		   ModAffichage.afficherGrillePossibilite(grillePossibilite);
-		   
-		   
-			   
+		   ModAffichage.afficherGrillePossibilite(grillePossibilite);  
 		   
 		   while(compteurTour< Constantes.NB_ESSAIS) 
 		  		 {
 		  			 String Input = inputDesARouler();
 		  			 int intdice = Integer.parseInt(Input);  //Convertion du string en integer
-		  			 
 		  			 if(intdice<=0) 
 		  			 {
 		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
@@ -106,19 +98,15 @@ public class YumVsEtud {
 		  		 }
 		   compteurTour = 1;
            ajoutPointGrille(arrayPoint, point);
-           ModAffichage.afficherGrille(arrayPoint);
-           
+           for (int j = 0; j < 50; ++j) System.out.println();
 		   }
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
 
 	}
 	
-	
 	/*
 	 *écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
-	
-
 
 	public static int[] initialisePointGrille(int[] array) {
 		
@@ -140,7 +128,6 @@ public class YumVsEtud {
 	 */
 	
 	public static int[] ajoutPointGrille(int[] array, int point) {
-		
 		
 		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum : ");
 		int choix = clavier2.nextInt();
@@ -236,8 +223,7 @@ public class YumVsEtud {
 	    return array;
 	}
 			
-	
-	
+
 	public static int[] reshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
 		
