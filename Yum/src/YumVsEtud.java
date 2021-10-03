@@ -1,4 +1,3 @@
-package src;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -97,7 +96,7 @@ public class YumVsEtud {
 		  			 
 		  		 }
 		   compteurTour = 1;
-           ajoutPointGrille(arrayPoint, point);
+           ajoutPointGrille(arrayPoint);
            for (int j = 0; j < 50; ++j) System.out.println();
 		   }
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
@@ -108,6 +107,14 @@ public class YumVsEtud {
 	 *écrivez TOUS vos sous-programmes ici.  Il y en a entre 15 et 20.
 	 */
 
+	
+	/*
+	 * 
+	 * Initialise la grille de point avec des valeur -1
+	 * sauf pour les grille total ou il commence avec 0 initiallement
+	 * 
+	 * Auteur : Rada Leng
+	 */
 	public static int[] initialisePointGrille(int[] array) {
 		
 		for(int i = 0 ; i < array.length ; i++) {
@@ -121,90 +128,129 @@ public class YumVsEtud {
 		return array;
 	}
 	/*
+	 * fonction qui retourne un le tableau de grille de point
+	 * Puisque le tableau Grillepossibilite est la meme taille que grilledepoint
+	 * la valeur de grilledepossibilite[i] choisi sera implemente dans le array[i]
+	 * du grille de point. dependement de quel i on choisi le sous_total
+	 * total_haut etc sera += (additionne) et le total final est laddition de tout.
 	 * 
-	 * 
+	 * si la grille choisi nest pas -1 on redemande une valeur
 	 * 
 	 * Autour : Rada Leng
 	 */
 	
-	public static int[] ajoutPointGrille(int[] array, int point) {
+	public static int[] ajoutPointGrille(int[] array) {
 		
 		System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum : ");
 		int choix = clavier2.nextInt();
 
 		int bonus = 0;
 		
+		int total_haut = 0;
+		int total_bas = 0;
+		int sous_total = 0;
+
+		while(array[choix] != -1) {
+			System.out.println("le choix a deja une valeur veuillez refaire votre choix");
+			System.out.println("(1 a 6) ou 10 = Brelan, 11 = Carre, 12 = Main pleine, 13 = Petite, 14 = Grosse, 15 = Surplus, 16 = Yum : ");
+			choix = clavier2.nextInt();
+		}
+		
 		if (choix == 1) {
 			array[1] = grillePossibilite[1];
 			point = grillePossibilite[1];
+			sous_total += point;
+			total_haut += point;
 
 		}
 		else if (choix == 2) {
 			array[2] = grillePossibilite[2];
 			point = grillePossibilite[2];
+			sous_total += point;
+			total_haut += point;
 
 		}
 		else if (choix == 3) {
 			
-			if(array[3] != -1) {
 			array[3] = grillePossibilite[3];
 			point = grillePossibilite[3];
-			}
-			else {
-				System.out.println("ce choix a deja ete choisi");
-			}
+			sous_total += point;
+			total_haut += point;
+			
+
 		}
 		else if (choix == 4) {
 			array[4] = grillePossibilite[4];
 			point = grillePossibilite[4];
+			sous_total += point;
+			total_haut += point;
 
 		}
 		else if (choix == 5) {
 			array[5] = grillePossibilite[5];
 			point = grillePossibilite[5];
+			sous_total += point;
+			total_haut += point;
 
 		}
 		else if (choix == 6) {
 			array[6] = grillePossibilite[6];
 			point = grillePossibilite[6];
+			sous_total += point;
+			total_haut += point;
 
 		}
 		else if (choix == 10) {
 			array[Constantes.BRELAN] = grillePossibilite[Constantes.BRELAN];
 			point = grillePossibilite[Constantes.BRELAN];
+			total_bas += point;
 		}
 		else if (choix == 11) {
 			array[Constantes.CARRE] = grillePossibilite[Constantes.CARRE];
 			point = grillePossibilite[Constantes.CARRE];
+			total_bas += point;
 		}
 		else if (choix == 12) {
 			array[Constantes.MAIN_PLEINE] = grillePossibilite[Constantes.MAIN_PLEINE];
 			point = grillePossibilite[Constantes.MAIN_PLEINE];
+			total_bas += point;
 		}
 		else if (choix == 13) {
 			array[Constantes.PETITE_SUITE] = grillePossibilite[Constantes.PETITE_SUITE];
 			point = grillePossibilite[Constantes.PETITE_SUITE];
+			total_bas += point;
 		}
 		else if (choix == 14) {
 			array[Constantes.GROSSE_SUITE] = grillePossibilite[Constantes.GROSSE_SUITE];
 			point = grillePossibilite[Constantes.GROSSE_SUITE];
+			total_bas += point;
 		}
 		else if (choix == 15) {
 			array[Constantes.SURPLUS] = grillePossibilite[Constantes.SURPLUS];
 			point = grillePossibilite[Constantes.SURPLUS];
+			total_bas += point;
 		}
 		else if (choix == 16) {
 			array[Constantes.YUM] = grillePossibilite[Constantes.YUM];
 			point = grillePossibilite[Constantes.YUM];
+			total_bas += point;
 		}
+
+		
+		
 		bonus = array[1] + array[2] + array[3] + array[4] +array[5] +array[6];
 		if(bonus >= Constantes.MIN_BONUS) {
 			array[Constantes.BONUS_DU_HAUT] = Constantes.POINT_BONUS_HAUT;
 			point += array[Constantes.BONUS_DU_HAUT];
+			total_haut += array[Constantes.BONUS_DU_HAUT];
 		}
 
-		array[Constantes.SOUS_TOTAL_HAUT] += point;
-		array[Constantes.TOTAL_HAUT] += point;
+
+		
+		
+		array[Constantes.TOTAL_BAS] += total_bas;
+		array[Constantes.SOUS_TOTAL_HAUT] += sous_total;
+		array[Constantes.TOTAL_HAUT] += total_haut;
 		array[Constantes.GRAND_TOTAL] += point;
 		return array;
 	}

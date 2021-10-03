@@ -73,6 +73,14 @@ class TestYum {
 		
 	}
 	
+		@Test
+	void Test_initialisePointGrille() {
+		int array[] = {-1,-1,-1,-1,-1,-1,-1,0,0,0,-1,-1,-1,-1,-1,-1,-1,0,0};
+		int array2[] = new int[19];
+		YumVsEtud.initialisePointGrille(array2);
+		assertArrayEquals(array2,array);
+	}
+	
 	
 		
 	
