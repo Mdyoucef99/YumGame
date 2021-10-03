@@ -3,9 +3,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 /*
- ** Programme principal qui d�marre le jeu de YUM pour un seul joueur. 
+ ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
  *  
- * Une s�rie de 5 d�s est g�n�r� al�atoirement et le joueur a droit 
+ * Une série de 5 dés est g�n�r� al�atoirement et le joueur a droit 
  * a changer les d�s qu'il d�sire � �eux reprises  moins qu'il les 
  * garde tous. 
  *  
@@ -75,6 +75,7 @@ public class YumVsEtud {
 		  			 {
 		  				 System.out.print("Le joueur ne veux pas relancer.  \n" );//Affichage message pour ne relancer 
 		  				 ModAffichage.afficherDes(arrayDice);
+		  				 remplirTabOccurrence(arrayDice,tabOccurrence);
 		  				 additionDesPoints(arrayDice,grillePossibilite);
 		  				 checkCondition();
 		  				 ModAffichage.afficherGrillePossibilite(grillePossibilite);
@@ -88,6 +89,7 @@ public class YumVsEtud {
 		  				   System.out.print("Nouvelle main de d�es :  \n" );
 		  				   reshuffleDice(arrayDice,Input);
 		  				   ModAffichage.afficherDes(arrayDice);
+		  				   remplirTabOccurrence(arrayDice,tabOccurrence);
 		  				   additionDesPoints(arrayDice,grillePossibilite);
 		  				   checkCondition();
 		  				   ModAffichage.afficherGrillePossibilite(grillePossibilite);
@@ -446,8 +448,11 @@ public class YumVsEtud {
 	 *  Auteur: Antoine Bolduc
 	 */
 	public static void remplirTabOccurrence(int [] tabDes, int []tabOccurrence) 
-	{ 
-		for(int i=0;i<tabDes.length;i++){ 
+	{
+		for(int i=0;i<tabOccurrence.length;i++){
+			tabOccurrence[i] = 0;
+		}
+		for(int i=0;i<tabDes.length;i++){
 			tabOccurrence[tabDes[i]]++;
 		} 
 	}
