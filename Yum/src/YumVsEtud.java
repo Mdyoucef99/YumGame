@@ -39,11 +39,11 @@ public class YumVsEtud {
 	
 	 public static int[] grillePossibilite = new int[25];
 	 public static int  compteurTour = 1;
-	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des des 
-	 public static int[] arrayDice = new int[5]; //creation des 5 des. 
-	 public static int[] arrayPoint = new int[19];
+	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des dés 
+	 public static int[] arrayDice = new int[Constantes.NB_DES]; //tableau qui représente les 5 des. 
+	 public static int[] grilleDePointage = new int[Constantes.NB_CASES];//teableau qui représente la grille de pointage
 	 public static int point = 0;
-	public static final int DES_MAX = 7;
+	 public static final int DES_MAX = 7;
 	 
 	// Permet la saisie de données au clavier en mode console.
 	public static Scanner clavier = new Scanner(System.in);
@@ -53,11 +53,12 @@ public class YumVsEtud {
 		
 	/* Traduisez ici l'algorithme du programme principal*/
 		   
-		   initialisePointGrille(arrayPoint);
-           for(int i = 1 ; i < Constantes.NB_TOURS +1 ; i++) {
+		   initialisePointGrille(grilleDePointage);
+           for(int i = 1 ; i < Constantes.NB_TOURS +1 ; i++) 
+           {
 
-        	ModAffichage.afficherGrille(arrayPoint);
-        	System.out.printf("vous etes au tour %d",i);
+           ModAffichage.afficherGrille(grilleDePointage);
+           System.out.printf("vous etes au tour %d",i);
            System.out.println(); 
 		   initialShuflle(arrayDice);
 		   ModAffichage.afficherDes(arrayDice);
@@ -97,8 +98,7 @@ public class YumVsEtud {
 		  			 
 		  		 }
 		   compteurTour = 1;
-           ajoutPointGrille(arrayPoint);
-           for (int j = 0; j < 50; ++j) System.out.println();
+           ajoutPointGrille(grilleDePointage);
 		   }
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
 
@@ -458,7 +458,6 @@ public class YumVsEtud {
 	
 	public static int[] additionDesPoints(int[] tab,int[] grille) 
 	{
-		
 		int a = 0;
 		int b = 0;
 		int c = 0;
@@ -505,7 +504,6 @@ public class YumVsEtud {
 			
 			
 		}	
-		
 		grille[1]= a;
 		grille[2]= b;
 		grille[3]= c;
@@ -513,8 +511,7 @@ public class YumVsEtud {
 		grille[5]= e;
 		grille[6]= f;
 		
-		return grille;
-		
+		return grille;	
 	}
 	
 	/*	Appel des fonctions de vérification des combinaisons possibles.

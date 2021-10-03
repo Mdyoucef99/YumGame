@@ -23,7 +23,7 @@ class YumTest {
 
 	}
 	@Test
-	void test_Reshuffle() {  //Test unitaire  pour la   procedure de relancer les dï¿½s  @Youcef mekki daouadji
+	void test_Reshuffle() {  //Test unitaire  pour la   procedure de relancer les dés  @Youcef mekki daouadji
 
 		System.out.print("Nouvelle main de des : \n ");
 		int[] array = {1,5,6,1,5};
@@ -40,7 +40,7 @@ class YumTest {
 	
 
 	@Test 
-	void test_Inputdes() //Test unitaire pour s'assurer que le joueur peut entrer les des a relancer  @Youcef mekki daouadji
+	void test_Inputdes() //Test unitaire pour s'assurer que le joueur peut entrer les des à relancer  @Youcef mekki daouadji
 	{
 		 String Input = "123"; 
 		 assertEquals(Input,YumVsEtud.inputDesARouler());
@@ -129,7 +129,7 @@ class YumTest {
 		
 		
 		@Test 
-	void Test_initialisePointGrille() { 
+	    void Test_initialisePointGrille() { 
 		int array[] = {-1,-1,-1,-1,-1,-1,-1,0,0,0,-1,-1,-1,-1,-1,-1,-1,0,0}; 
 		int array2[] = new int[19]; 
 		YumVsEtud.initialisePointGrille(array2); 
