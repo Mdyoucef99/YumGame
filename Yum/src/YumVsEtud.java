@@ -1,3 +1,4 @@
+package src;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -127,6 +128,7 @@ public class YumVsEtud {
 		array[Constantes.GRAND_TOTAL] = 0;
 		return array;
 	}
+	
 	/*
 	 * fonction qui retourne un le tableau de grille de point
 	 * Puisque le tableau Grillepossibilite est la meme taille que grilledepoint
@@ -236,8 +238,7 @@ public class YumVsEtud {
 			total_bas += point;
 		}
 
-		
-		
+
 		bonus = array[1] + array[2] + array[3] + array[4] +array[5] +array[6];
 		if(bonus >= Constantes.MIN_BONUS) {
 			array[Constantes.BONUS_DU_HAUT] = Constantes.POINT_BONUS_HAUT;
@@ -245,9 +246,6 @@ public class YumVsEtud {
 			total_haut += array[Constantes.BONUS_DU_HAUT];
 		}
 
-
-		
-		
 		array[Constantes.TOTAL_BAS] += total_bas;
 		array[Constantes.SOUS_TOTAL_HAUT] += sous_total;
 		array[Constantes.TOTAL_HAUT] += total_haut;
@@ -334,7 +332,7 @@ public class YumVsEtud {
 		}  
 	}
 	
-	/*	Trouver une courte séquence dans un tableau  en paramétre et 
+	/*	Trouver une courte séquence dans un tableau en paramétre et 
 	 * 	mettre les données dans la grille de possibilités.
 	 * 
 	 *  @param tabOccurrence : un tableau
@@ -457,6 +455,7 @@ public class YumVsEtud {
 	}
 	
 
+	
 	public static int[] additionDesPoints(int[] tab,int[] grille) 
 	{
 		

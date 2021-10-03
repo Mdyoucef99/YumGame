@@ -22,7 +22,6 @@ class YumTest {
 		
 
 	}
-	
 	@Test
 	void test_Reshuffle() {  //Test unitaire  pour la   procedure de relancer les d�s  @Youcef mekki daouadji
 
@@ -59,9 +58,6 @@ class YumTest {
 
 	}
 	
-	
-	
-
 		 
 		@Test 
 		void Test_Affichagegrille()  
@@ -130,6 +126,15 @@ class YumTest {
 			assertArrayEquals(array2,arrayRep); 
 			 
 		} 
+		
+		
+		@Test 
+	void Test_initialisePointGrille() { 
+		int array[] = {-1,-1,-1,-1,-1,-1,-1,0,0,0,-1,-1,-1,-1,-1,-1,-1,0,0}; 
+		int array2[] = new int[19]; 
+		YumVsEtud.initialisePointGrille(array2); 
+		assertArrayEquals(array2,array); 
+	} 
 	
 
 }
