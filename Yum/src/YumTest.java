@@ -23,7 +23,7 @@ class YumTest {
 
 	}
 	@Test
-	void test_Reshuffle() {  //Test unitaire  pour la   procedure de relancer les dï¿½s  @Youcef mekki daouadji
+	void test_Reshuffle() {  //Test unitaire  pour la   procedure de relancer les dés  @Youcef mekki daouadji
 
 		System.out.print("Nouvelle main de des : \n ");
 		int[] array = {1,5,6,1,5};
