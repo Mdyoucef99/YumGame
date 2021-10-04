@@ -3,10 +3,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 /*
- ** Programme principal qui dÃ©marre le jeu de YUM pour un seul joueur. 
+ ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
  *  
- * Une sÃ©rie de 5 dÃ©s est généré aléatoirement et le joueur a droit 
- * a changer les dés qu'il désire é éeux reprises  moins qu'il les 
+ * Une série de 5 dés est généré aléatoirement et le joueur a droit 
+ * a changer les dés qu'il désire eux reprises  moins qu'il les 
  * garde tous. 
  *  
  * Par la suite, le programme offre toutes les possibilités de points  
@@ -33,15 +33,14 @@ import java.util.Scanner;
 
 public class YumVsEtud {
 
-	
 	// Les constantes sont défines dans le module Constantes.java
 	// Si vous en ajoutez, faites-le ici.
 	
 	 public static int[] grillePossibilite = new int[25];
 	 public static int  compteurTour = 1;
 	 public static int[] tabOccurrence = new int[7];//Tableau pour accumuler les occurences des dés 
-	 public static int[] arrayDice = new int[Constantes.NB_DES]; //tableau qui représente les 5 des. 
-	 public static int[] grilleDePointage = new int[Constantes.NB_CASES];//teableau qui représente la grille de pointage
+	 public static int[] arrayDice = new int[Constantes.NB_DES]; //tableau qui représente les 5 dés. 
+	 public static int[] grilleDePointage = new int[Constantes.NB_CASES];//tableau qui représente la grille de pointage
 	 public static int point = 0;
 	 public static final int DES_MAX = 7;
 	 
@@ -67,7 +66,7 @@ public class YumVsEtud {
 		   checkCondition();
 		   ModAffichage.afficherGrillePossibilite(grillePossibilite);  
 		   
-		   while(compteurTour< Constantes.NB_ESSAIS) 
+		   while(compteurTour< Constantes.NB_ESSAIS) //Condition le joueur peut relancer les dés jusqu'à 3 fois @Youcef mekki daouadji
 		  		 {
 		  			 String Input = inputDesARouler();
 		  			 int intdice = Integer.parseInt(Input);  //Convertion du string en integer
@@ -99,8 +98,8 @@ public class YumVsEtud {
 		  			  }
 		  			 
 		  		 }
-		   compteurTour = 1;
            ajoutPointGrille(grilleDePointage);
+           compteurTour = 1;//initialiser le compteur de tour à 1 après avoir choisie la valeur à mettre dans  la grille de pointage
 		   }
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
 
@@ -138,7 +137,7 @@ public class YumVsEtud {
 	 * du grille de point. dependement de quel i on choisi le sous_total
 	 * total_haut etc sera += (additionne) et le total final est laddition de tout.
 	 * 
-	 * si la grille choisi nest pas -1 on redemande une valeur
+	 * si la grille choisi n'est pas -1 on redemande une valeur
 	 * 
 	 * Autour : Rada Leng
 	 */
@@ -256,6 +255,12 @@ public class YumVsEtud {
 	}
 	
 	
+	/*	procédure qui s'occupe de générer 5 dés différent aléatoirement et retourne le dés dans un tableau
+	 *   
+	 *  @param array : un tableau
+	 *  
+	 *  Auteur: Youcef mekki daouadji
+	 */ 
 	public static int[] initialShuflle(int[] array) //fonction qui permet de donner 5 des different
 	{   
 	    Random random = new Random();
@@ -269,6 +274,15 @@ public class YumVsEtud {
 	    return array;
 	}
 			
+	/*	procédure qui s'occupe de prendre un string et ensuite de prendre chaque character et de s'assurer de relancer  
+	 *  à l'index voulu. Les dés relancés sont générés aléatoirement. retourne les 5 dés dans un tableau.
+	 *   
+	 *  @param tab : un tableau
+	 *  @param Index : le string qui représente les dés à relancer
+	 *  
+	 *  Auteur: Youcef mekki daouadji
+	 */
+	
 
 	public static int[] reshuffleDice(int[] arrayParam, String Index) // fonction qui shuffle les des selectionner.
 	{	 
@@ -458,6 +472,12 @@ public class YumVsEtud {
 	}
 	
 
+	/*	procédure qui prends le input de l'utilisateur et retourne cette valeur en string 
+	 *
+	 *
+	 *  Auteur: Youcef mekki daouadji
+	 */
+	
 	public static String inputDesARouler() 
 	{
 		   System.out.print("Entrer  les des  a changer (0) si vous vouler garder vos dés " );
@@ -467,6 +487,15 @@ public class YumVsEtud {
 	}
 	
 
+	/*	procédure qui s'occupe de compter le nombre d'occurence d'un nombre et additionner les points 
+	 * pour ensuite les ajouter au tableau de grille d'affichage à l'index voulu.
+	 *
+	 *  @param tab : un tableau
+	 *  @param grille : le tableau de choix possible
+	 *  
+	 *  Auteur: Youcef mekki daouadji
+	 */
+	
 	public static int[] additionDesPoints(int[] tab,int[] grille) 
 	{
 		int a = 0;

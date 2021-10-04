@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class YumTest {
 
-	@Test // Test unit pour initial shuffle procedure @Youcef mekki daouadji
+	@Test // Test unitaire pour le premier lancer de dés  @Youcef mekki daouadji
 	void test_InitialShuffle() {
 
 		
@@ -23,7 +23,7 @@ class YumTest {
 
 	}
 	@Test
-	void test_Reshuffle() {  //Test unitaire  pour la   procedure de relancer les dés  @Youcef mekki daouadji
+	void test_Reshuffle() {  //Test unitaire  pour la  procedure de relancer les dés  @Youcef mekki daouadji
 
 		System.out.print("Nouvelle main de des : \n ");
 		int[] array = {1,5,6,1,5};
@@ -40,7 +40,7 @@ class YumTest {
 	
 
 	@Test 
-	void test_Inputdes() //Test unitaire pour s'assurer que le joueur peut entrer les des à relancer  @Youcef mekki daouadji
+	void test_Inputdes() //Test unitaire pour s'assurer que le joueur peut entrer les dés à relancer  @Youcef mekki daouadji
 	{
 		 String Input = "123"; 
 		 assertEquals(Input,YumVsEtud.inputDesARouler());
@@ -49,7 +49,7 @@ class YumTest {
 	
 	
 	@Test 
-	void Test_ajoutdespoints()  // Test unitaire pour ajouter les points dans une grille et les afficher  @Youcef mekki daouadji
+	void Test_ajoutdespoints()  // Test unitaire pour ajouter les points dans une grille de choix  @Youcef mekki daouadji
 	{
 		int[] grille = new int[7];
 		int[] des = {1,2,4,4,5};
