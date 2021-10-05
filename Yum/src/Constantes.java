@@ -5,7 +5,7 @@ package src;
  * 
  * 
  * Si vous ajoutez des constantes, faites-le dans le méme fichier que
- * votre main().  Ne touchez pas é ce module.
+ * votre main().  Ne touchez pas  ce module.
  * 
  * Auteur: Pierre Bélisle
  * Version : Copyright A2021

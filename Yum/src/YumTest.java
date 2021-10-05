@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class YumTest {
 
-	@Test // Test unitaire pour le premier lancer de dÃ©s  @Youcef mekki daouadji
+	@Test // Test unitaire pour le premier lancer de dés  @Youcef mekki daouadji
 	void test_InitialShuffle() {
 
 		
@@ -23,7 +23,7 @@ class YumTest {
 
 	}
 	@Test
-	void test_Reshuffle() {  //Test unitaire  pour la  procedure de relancer les dÃ©s  @Youcef mekki daouadji
+	void test_Reshuffle() {  //Test unitaire  pour la  procedure de relancer les dés  @Youcef mekki daouadji
 
 		System.out.print("Nouvelle main de des : \n ");
 		int[] array = {1,5,6,1,5};
@@ -40,7 +40,7 @@ class YumTest {
 	
 
 	@Test 
-	void test_Inputdes() //Test unitaire pour s'assurer que le joueur peut entrer les dÃ©s Ã  relancer  @Youcef mekki daouadji
+	void test_Inputdes() //Test unitaire pour s'assurer que le joueur peut entrer les dés Ã  relancer  @Youcef mekki daouadji
 	{
 		 String Input = "123"; 
 		 assertEquals(Input,YumVsEtud.inputDesARouler());
@@ -89,14 +89,14 @@ class YumTest {
 		} 
 		 
 		@Test 
-		void Test_TrouverLongueSequence()// Test unitaire pour touver la longue sÃ©quence  @Antoine Bolduc  
+		void Test_TrouverLongueSequence()// Test unitaire pour touver la longue séquence  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverLongueSequence(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverCourteSequence()// Test unitaire pour touver le courte sÃ©quence  @Antoine Bolduc  
+		void Test_TrouverCourteSequence()// Test unitaire pour touver le courte séquence  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverCourteSequence(array); 
@@ -127,7 +127,7 @@ class YumTest {
 			 
 		} 
 		
-		// test unitaire pour voir si la grille est bien iniatilise @Rada Leng
+		// test unitaire pour voir si la grille est bien iniatilisé @Rada Leng
 		@Test 
 	    void Test_initialisePointGrille() { 
 		int array[] = {-1,-1,-1,-1,-1,-1,-1,0,0,0,-1,-1,-1,-1,-1,-1,-1,0,0}; 

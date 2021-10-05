@@ -1,7 +1,7 @@
 package src;
 import java.util.Random;
 import java.util.Scanner;
-
+import java.io.IOException;  
 /*
  ** Programme principal qui démarre le jeu de YUM pour un seul joueur. 
  *  
@@ -48,7 +48,7 @@ public class YumVsEtud {
 	public static Scanner clavier = new Scanner(System.in);
 	public static Scanner clavier2 = new Scanner(System.in);
 
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws IOException, InterruptedException   {
 		
 	/* Traduisez ici l'algorithme du programme principal*/
 		   
@@ -100,9 +100,13 @@ public class YumVsEtud {
 		  		 }
            ajoutPointGrille(grilleDePointage);
            compteurTour = 1;//initialiser le compteur de tour à 1 après avoir choisie la valeur à mettre dans  la grille de pointage
+           
+           
+           //Mettre un clear screen a la fin 
+ 
 		   }
 	    System.out.print(" \nMerci d'avoir joue au YUM avec nous");
-
+	    
 	}
 	
 	/*
@@ -135,7 +139,7 @@ public class YumVsEtud {
 	 * Puisque le tableau Grillepossibilite est la meme taille que grilledepoint
 	 * la valeur de grilledepossibilite[i] choisi sera implemente dans le array[i]
 	 * du grille de point. dependement de quel i on choisi le sous_total
-	 * total_haut etc sera += (additionne) et le total final est laddition de tout.
+	 * total_haut etc sera += (additionne) et le total final est l'addition de tout.
 	 * 
 	 * si la grille choisi n'est pas -1 on redemande une valeur
 	 * 
