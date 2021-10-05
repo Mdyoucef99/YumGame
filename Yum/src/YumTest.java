@@ -68,56 +68,56 @@ class YumTest {
 		} 
 		 
 		@Test 
-		void Test_TrouverMainePleine()  
+		void Test_TrouverMainePleine()// Test unitaire pour trouver la maine pleine  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverMainPleine(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverYum()  
+		void Test_TrouverYum()// Test unitaire pour trouver le yum  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverYum(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverSurplus()  
+		void Test_TrouverSurplus()// Test unitaire pour touver le surplus  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverSurplus(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverLongueSequence()  
+		void Test_TrouverLongueSequence()// Test unitaire pour touver la longue séquence  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverLongueSequence(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverCourteSequence()  
+		void Test_TrouverCourteSequence()// Test unitaire pour touver le courte séquence  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverCourteSequence(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverCarre()  
+		void Test_TrouverCarre()// Test unitaire pour touver le carre  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverCarre(array); 
 		} 
 		 
 		@Test 
-		void Test_TrouverBerlan()  
+		void Test_TrouverBerlan()// Test unitaire pour touver le berlan  @Antoine Bolduc  
 		{ 
 			int array[] ={1,1,2,2,4}; 
 			YumVsEtud.trouverBerlan(array); 
 		} 
 		 
 		@Test 
-		void Test_RemplirTabOccurrence()  
+		void Test_RemplirTabOccurrence()// Test unitaire pour remplir la tab occurrence  @Antoine Bolduc  
 		{ 
 			int array1[] ={1,1,2,2,4}; 
 			int array2[] = {0,0,0,0,0,0,0}; 
